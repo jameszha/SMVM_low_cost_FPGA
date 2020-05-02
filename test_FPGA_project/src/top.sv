@@ -25,7 +25,9 @@ module top
 	 // Serial Communication
 	 input  logic [1:0]          bc_in,
 	 output logic [2:0]          bc_out,
-	 inout  logic [7:0]		     bd_inout,
+	 inout  wire [7:0]		     bd_inout,
+
+   //input logic CLOCK_50, // Testing
 
      // LED
 	 output logic   [35:0]      LED,
@@ -35,7 +37,7 @@ module top
 
      // SD Card
      output logic               SD_CLK,
-     inout                      SD_CMD,
+     inout wire                 SD_CMD,
      input logic    [3:0]       SD_DATA
 	);
 
@@ -43,8 +45,8 @@ module top
 	//* 	Clock and Reset
 	//**************************************************
 	logic clk, rst_l;
-  	assign            clk = aa[1];
-  	assign            rst_l = aa[0];
+  	assign clk = aa[1];
+    assign rst_l = aa[0];
 	
     //**************************************************
     //*     Button Control
@@ -55,28 +57,6 @@ module top
     //*     Se: https://github.com/WangXuan95/FPGA-SDcard-Reader
     //*     TODO: Needs Fixing
     //**************************************************
-    logic       outreq;    // when outreq=1, a byte of file content is read out from outbyte
-    logic [7:0] outbyte;   // a byte of file content
-
-    logic [3:0] sdcardstate;
-    logic [1:0] sdcardtype;
-    logic [2:0] fatstate;
-    logic [1:0] filesystemtype;
-    logic       file_found;
-
-    SDFileReader #(.CLK_DIV(1), .FILE_NAME("data.txt")) SD_Card_Read (.clk, .rst_n(rst_l), 
-                                                                      .sdclk(SD_CLK),.sdcmd(SD_CMD), .sddat(SD_DATA),
-            
-                                                                      // SD Card Information
-                                                                      .sdcardstate(sdcardstate),
-                                                                      .sdcardtype(sdcardtype),          // 0=Unknown, 1=SDv1.1 , 2=SDv2 , 3=SDHCv2
-                                                                      .fatstate(fatstate),              // 3'd6 = DONE
-                                                                      .filesystemtype(filesystemtype),  // 0=Unknown, 1=invalid, 2=FAT16, 3=FAT32
-                                                                      .file_found(file_found),          // 0=file not found, 1=file found
-                                                                      
-                                                                      // SD Card Data
-                                                                      .outreq(outreq), .outbyte(outbyte));
-
     //**************************************************
     //*     LED Control
     //**************************************************
@@ -84,19 +64,6 @@ module top
     logic led_en, led_data_ld;
     assign led_en = BUTTON[0];
     assign led_data_ld = 1'b1;
-    assign led_data = (file_found) ? // Smiley = File found; Frowny = File not found
-                      {1'b0, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0,
-                       1'b0, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0,
-                       1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0,
-                       1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1,
-                       1'b0, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
-                       1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0} :
-                      {1'b0, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0,
-                       1'b0, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0,
-                       1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0,
-                       1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0,
-                       1'b0, 1'b1, 1'b1, 1'b1, 1'b1, 1'b0,
-                       1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1};
 
     led_controller LED_Control (.clk, .rst_l,
                                 .en(led_en),
@@ -108,6 +75,194 @@ module top
     //**************************************************
     //*     Data Transfer
     //**************************************************
+
+    // Controller-to-Endterm bus
+    logic [23:0] UC_IN;
+    logic [21:0] UC_OUT;
+
+    active_transfer_library Active_Transfer_Controller (.aa(aa),
+                                                        .bc_in(bc_in),
+                                                        .bc_out(bc_out),
+                                                        .bd_inout(bd_inout),
+
+                                                        .UC_IN(UC_IN),
+                                                        .UC_OUT(UC_OUT));
+
+    /* Testing out the ROM module */
+    logic counter_set, counter_clear, counter_en;
+    logic [31:0] counter_set_val, counter_count;
+    counter_down CD
+    (.clk, .rst_l,
+    .en(counter_en),
+    .set(counter_set), .clear(counter_clear),
+    .set_val(counter_set_val),
+    .count(counter_count));
+
+    logic [6:0] address_a, address_b;
+    logic [7:0] q_a, q_b;
+    romB_128x1 RB(
+    .address_a(address_a),
+    .address_b(address_b),
+    .clock(clk),
+    .q_a(q_a),
+    .q_b(q_b));
+
+    assign led_data = {28'h0, q_a};
+
+    logic up;
+    assign up = counter_count == 32'h0;
+
+    always_ff @(posedge clk, negedge rst_l) begin
+      if(~rst_l) begin
+         address_a <= 0;
+
+         counter_en <= 1;
+         counter_clear <= 1'b0; 
+
+         counter_set <= 1'b1;
+         counter_set_val <= 32'h03FF_FFFF; // i second at 50Mhz
+
+      end else if (up) begin
+         address_a <= address_a + 1;
+
+         counter_en <= 1;
+         counter_clear <= 1'b0; 
+
+         counter_set <= 1'b1;
+         counter_set_val <= 32'h03FF_FFFF; // i second at 50Mhz
+      end else begin
+        address_a <= address_a;
+
+        counter_en <= 1;
+        counter_clear <= 1'b0; 
+
+        counter_set <= 1'b0;
+        counter_set_val <= 32'h03FF_FFFF; // i second at 50Mhz
+      end
+    end
+
+
+    // wire [22*5-1:0]  uc_out_m;
+    // eptWireOR # (.N(5)) wireOR (UC_OUT, uc_out_m);
+
+    //  active_trigger             ACTIVE_TRIGGER_INST
+    //  (
+    //   .uc_clk                   (clk),
+    //   .uc_reset                 (rst_l),
+    //   .uc_in                    (UC_IN),
+    //   .uc_out                   (uc_out_m[ 0*22 +: 22 ]),
+
+    //   .trigger_to_host          ({7'b0, BUTTON[1]}),
+    //   .trigger_to_device        ()
+        
+    //  );
+
+    // logic transfer_out_en;
+    // logic transfer_in_received;
+    // logic transfer_out_start;
+    // logic [7:0] transfer_in_byte;
+    // logic [7:0] transfer_out_byte;
+
+    //  active_transfer            ACTIVE_TRANSFER_INST
+    //  (
+    //   .uc_clk                   (clk),
+    //   .uc_reset                 (rst_l),
+    //   .uc_in                    (UC_IN),
+    //   .uc_out                   (uc_out_m[ 2*22 +: 22 ]),
+        
+    //   .start_transfer           (transfer_out_start),
+    //   .transfer_received        (transfer_in_received),
+        
+    //   .transfer_busy            (),
+        
+    //   .uc_addr                  (3'h2),
+
+    //   .transfer_to_host         (transfer_out_byte),
+    //   .transfer_to_device       (transfer_in_byte)   
+    //  );
+
+    // int bytes_received;
+    // logic[35:0][7:0] temp_memory;
+    // // Receive data using single byte transfer - slow. TODO: switch to block transfer
+    // always_ff @(posedge transfer_in_received or negedge rst_l) begin
+    //     if(~rst_l) begin
+    //         bytes_received = 0;
+    //     end else begin
+    //         if (transfer_in_received) begin
+    //             //led_data <= 36'b1 << transfer_in_byte;
+    //             temp_memory[bytes_received] = transfer_in_byte;
+    //             bytes_received = bytes_received + 1;
+    //             //transfer_out_byte = temp_memory[bytes_received - 1];
+    //             //transfer_out_start = 1;
+    //         end
+    //     end
+    // end
+
+    // always_ff @(posedge clk, negedge rst_l) begin
+    //   if (~rst_l) 
+    //     led_data <= 0;
+    //   else 
+    //     led_data <= 36'b1 << bytes_received;
+    // end
+
+    // logic toggle;
+    // always_ff @(posedge clk or negedge rst_l) begin : proc_transfer_out_start
+    //   if(~rst_l) begin
+    //     toggle <= 0;
+    //     transfer_out_start <= 0;
+    //   end else if (~toggle & transfer_out_start) begin
+    //     transfer_out_start <= 1;
+    //     toggle <= 1;
+    //   end else if (toggle & transfer_out_start) begin
+    //     transfer_out_start <= 0;
+    //     toggle <= 0;
+    //   end else begin
+    //     toggle <= 0;
+    //     transfer_out_start <= 0;
+    //   end
+    // end
+
+    //always_ff @(posedge clk, negedge rst_l) begin
+    //  if (~rst_l)
+    //    led_data <= 
+    //end
+
+    // logic block_out_reg, block_byte_ready;
+    // logic [8:0] block_out_byte;
+    // logic [8:0] bytes_sent;
+    // active_block               BLOCK_TRANSFER_INST
+    //  (
+    //   .uc_clk                   (clk),
+    //   .uc_reset                 (rst_l),
+    //   .uc_in                    (UC_IN),
+    //   .uc_out                   (uc_out_m[ 3*22 +: 22 ]),
+        
+    //   .start_transfer           (block_out_reg),
+    //   .transfer_received        (),
+         
+    //   .transfer_ready           (block_byte_ready),
+    //   .transfer_busy            (),
+
+    //   .ept_length               (),
+        
+    //   .uc_addr                  (3'h3),
+    //   .uc_length                (8'd36),
+
+    //   .transfer_to_host         (block_out_byte),
+    //   .transfer_to_device       ()
+        
+    //  );
+    // assign block_out_reg = (bytes_received == 36) ? 1'b1 : 1'b0;
+    // always_ff @(posedge block_byte_ready or negedge rst_l) begin
+    //     if(~rst_l) begin
+    //         bytes_sent <= 0;
+    //         block_out_byte <= temp_memory[0];
+    //     end else begin
+    //         bytes_sent <= bytes_sent + 1;
+    //         block_out_byte <= temp_memory[bytes_sent];
+    //     end
+    // end
+
 
 
 //    //-----------------------------------------------

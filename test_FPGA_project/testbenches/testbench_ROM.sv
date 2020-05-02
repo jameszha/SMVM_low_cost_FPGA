@@ -4,8 +4,8 @@ module tb();
 	logic clk, rst_l;
 
 	initial begin 
-		clock = 0;
-		forever #5 clock = ~clock;
+		clk = 0;
+		forever #5 clk = ~clk;
 	end
 
 	initial begin 
@@ -20,21 +20,19 @@ module tb();
 		rst_l <= #5 1;
 	end
 
-	logic [6:0] address_a, address_b;
-    logic [7:0] q_a, q_b;
-    romB_128x1 RB(
-    .address_a(address_a),
-    .address_b(address_b),
-    .clock(clk),
-    .q_a(q_a),
-    .q_b(q_b));
+	logic [31:0] data_a, data_b;
+	logic compute_start;
 
-    always_ff @(posedge clk, negedge rst_l) begin : proc_
-    	if(~rst_l) begin
-    		 address_a <= 0;
-    	end else begin
-    		 address_a <= address_a + 1;
-    	end
-    end
+	logic [31:0] accum;
+	logic [31:0] row_num;
+	logic done;
+
+
+	row_accumulator dut(.*);
+
+	initial begin
+		@(posedge clk);
+		@(posedge clk);
+	end
 
 endmodule : tb

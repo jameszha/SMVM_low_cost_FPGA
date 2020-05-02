@@ -22,17 +22,15 @@
  *  - Q             The latched output from the register.
  **/
 module register
-   #(parameter                      WIDTH=0,
-     parameter logic [WIDTH-1:0]    RESET_VAL='b0)
     (input  logic               clk, en, rst_l, clear,
-     input  logic [WIDTH-1:0]   D,
-     output logic [WIDTH-1:0]   Q);
+     input  logic [31:0]   D,
+     output logic [31:0]   Q);
 
      always_ff @(posedge clk, negedge rst_l) begin
          if (!rst_l)
-             Q <= RESET_VAL;
+             Q <= 0;
          else if (clear)
-             Q <= RESET_VAL;
+             Q <= 0;
          else if (en)
              Q <= D;
      end

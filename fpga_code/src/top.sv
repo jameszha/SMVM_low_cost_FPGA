@@ -53,55 +53,6 @@ module top
   	assign clk = aa[1];
     assign rst_l = aa[0];
 
-    // parameter GLOBAL_RESET_COUNT = 12'h09c8;
-    // logic [11:0] reset_counter;
-    // always @(posedge clk or negedge aa[0]) begin
-    //     if(!aa[0]) begin
-    //         rst_l <= 1'b0;
-    //         reset_counter <= 0;
-    //     end
-    //     else begin
-    //         if( reset_counter < GLOBAL_RESET_COUNT ) begin
-    //             rst_l <= 1'b0;
-    //             reset_counter <= reset_counter + 1'b1;
-    //         end
-    //         else begin
-    //             rst_l <= 1'b1;
-    //         end
-    //     end
-    // end
-	
-    //**************************************************
-    //*     Button Control
-    //**************************************************
-
-    //**************************************************
-    //*     SD Card Control
-    //*     Se: https://github.com/WangXuan95/FPGA-SDcard-Reader
-    //*     TODO: Needs Fixing
-    //**************************************************
-    logic       outreq;    // when outreq=1, a byte of file content is read out from outbyte
-    logic [7:0] outbyte;   // a byte of file content
-
-    logic [3:0] sdcardstate;
-    logic [1:0] sdcardtype;
-    logic [2:0] fatstate;
-    logic [1:0] filesystemtype;
-    logic       file_found;
-
-    // SDFileReader #(.CLK_DIV(1), .FILE_NAME("data.txt")) SD_Card_Read (.clk, .rst_n(rst_l), 
-    //                                                                   .sdclk(SD_CLK),.sdcmd(SD_CMD), .sddat(SD_DATA),
-            
-    //                                                                   // SD Card Information
-    //                                                                   .sdcardstate(sdcardstate),
-    //                                                                   .sdcardtype(sdcardtype),          // 0=Unknown, 1=SDv1.1 , 2=SDv2 , 3=SDHCv2
-    //                                                                   .fatstate(fatstate),              // 3'd6 = DONE
-    //                                                                   .filesystemtype(filesystemtype),  // 0=Unknown, 1=invalid, 2=FAT16, 3=FAT32
-    //                                                                   .file_found(file_found),          // 0=file not found, 1=file found
-                                                                      
-    //                                                                   // SD Card Data
-    //                                                                   .outreq(outreq), .outbyte(outbyte));
-
     //**************************************************
     //*     LED Control
     //**************************************************
@@ -162,124 +113,181 @@ module top
         
      );
      assign trigger_out[0] = ~BUTTON[1];
-     assign trigger_out[7:2] = 'b0;
+     assign trigger_out[7:1] = 'b0;
 
-    logic [3:0][31:0] row_lengths;
+     parameter NUM_CHANNELS = 4;
+
+    logic [NUM_CHANNELS-1:0][31:0] cisr_row_lengths;
     logic row_len_rdy, row_len_done;
-    assign trigger_out[1] = row_len_rdy;
+    assign row_len_done = trigger_in[0];
     row_length_receiver Row_Length_Receiver (.clk, .rst_l,
-                                             .rst_trigger,
-                                             .uc_in (UC_IN), 
-                                             .uc_out (uc_out_m[ 1*22 +: 22 ]),
+                                             .uc_in(UC_IN), 
+                                             .uc_out(uc_out_m[ 1*22 +: 22 ]),
 
-                                             .row_lengths(row_lengths),
+                                             .row_lengths(cisr_row_lengths),
                                              .rdy(row_len_rdy),
-                                             .done(row_len_done));
+                                             .done());
     
-    
-    logic[127:0] row_lengths_latch_1, row_lengths_latch_2;
-    logic[7:0] row_length_counter;
-    assign led_data = row_length_counter;
+    logic [NUM_CHANNELS-1:0][31:0] cisr_values, cisr_column_indices;
+    logic val_ind_rdy;
+    value_index_receiver Value_Index_Receiver (.clk, .rst_l,
+                                               .uc_in(UC_IN), 
+                                               .uc_out(uc_out_m[ 2*22 +: 22 ]),
 
+                                               .values(cisr_values),
+                                               .column_indices(cisr_column_indices),
+                                               .rdy(val_ind_rdy));
+
+    logic [NUM_CHANNELS-1:0][31:0] values, col_id, row_id;
+    logic rdy;
+    cisr_decoder CISR_Decoder (.clk, .rst_l,
+                               .cisr_row_lengths(cisr_row_lengths),
+                               .row_len_rdy(row_len_rdy),
+                               .row_len_done(row_len_done),
+
+                               .cisr_values(cisr_values),
+                               .cisr_column_indices(cisr_column_indices),
+                               .val_ind_rdy(val_ind_rdy),
+
+                               .values(values),
+                               .col_id(col_id),
+                               .row_id(row_id),
+                               .rdy(rdy),
+
+                               .row_len_fifo_overflow()); // TODO: connect to status LED later
+
+    // always_ff @(posedge clk or negedge rst_l) begin
+    //     if(~rst_l) begin
+    //         led_data <= 'b0;
+    //     end else begin
+    //         if (rdy) begin
+    //             led_data <= {cisr_values[0][15:0], cisr_column_indices[0][15:0], 1'b1};
+    //         end
+    //     end
+    // end
+
+
+    // Temp latch to light up LEDs corresponding to nonzero elements in the decoded matrix
     always_ff @(posedge clk or negedge rst_l) begin
         if(~rst_l) begin
-            row_lengths_latch_1 <= 'b0;
-            row_lengths_latch_2 <= 'b0;
-            row_length_counter <= 'b0;
+            led_data <= 'b0;
         end else begin
-            if (row_len_rdy) begin
-                row_length_counter <= row_length_counter + 1;
-                row_lengths_latch_1 <= row_lengths;
-                row_lengths_latch_2 <= row_lengths_latch_1;
+            if (rdy) begin
+                for (int i = 0; i < NUM_CHANNELS; i++) begin
+                    if (values[i] != 0) begin
+                        // led_data = led_data + 'b1;
+                        // led_data = {row_id[i][5:0], col_id[i][5:0]};
+                        led_data[row_id[i]*6 + col_id[i]] = 1'b1;
+                    end
+                end
             end
         end
     end
-    logic[31:0][7:0] row_len_memory;
-    assign row_len_memory = {row_lengths_latch_1, row_lengths_latch_2};
 
-    logic block_out_start;
-    logic block_ready;
-    logic transfer_busy;
-    logic [7:0] block_out_byte;
-    logic [7:0] num_bytes_out, byte_out_count;
+    // assign led_data = {values, row_id, col_id, rdy};
 
-    active_block               BLOCK_TRANSFER_INST
-     (
-      .uc_clk                   (clk),
-      .uc_reset                 (rst_l),
-      .uc_in                    (UC_IN),
-      .uc_out                   (uc_out_m[ 3*22 +: 22 ]),
+    // // temp latch just to allow echoing back of the row len data
+    // logic[127:0] row_lengths_latch_1, row_lengths_latch_2;
+    // logic[7:0] row_length_counter;
+    // always_ff @(posedge clk or negedge rst_l) begin
+    //     if(~rst_l) begin
+    //         row_lengths_latch_1 <= 'b0;
+    //         row_lengths_latch_2 <= 'b0;
+    //         row_length_counter <= 'b0;
+    //     end else begin
+    //         if (row_len_rdy) begin
+    //             row_length_counter <= row_length_counter + 1;
+    //             row_lengths_latch_1 <= cisr_row_lengths;
+    //             row_lengths_latch_2 <= row_lengths_latch_1;
+    //         end
+    //     end
+    // end
+    // logic[31:0][7:0] row_len_memory;
+    // assign row_len_memory = {row_lengths_latch_1, row_lengths_latch_2};
+
+    // logic block_out_start;
+    // logic block_ready;
+    // logic transfer_busy;
+    // logic [7:0] block_out_byte;
+    // logic [7:0] num_bytes_out, byte_out_count;
+
+    // active_block               BLOCK_TRANSFER_INST
+    //  (
+    //   .uc_clk                   (clk),
+    //   .uc_reset                 (rst_l),
+    //   .uc_in                    (UC_IN),
+    //   .uc_out                   (uc_out_m[ 3*22 +: 22 ]),
         
-      .start_transfer           (block_out_start),
-      .transfer_received        (),
+    //   .start_transfer           (block_out_start),
+    //   .transfer_received        (),
          
-      .transfer_ready           (block_ready),
-      .transfer_busy            (transfer_busy),
+    //   .transfer_ready           (block_ready),
+    //   .transfer_busy            (transfer_busy),
 
-      .ept_length               (),
+    //   .ept_length               (),
         
-      .uc_addr                  (3'h3),
-      .uc_length                (num_bytes_out),
+    //   .uc_addr                  (3'h3),
+    //   .uc_length                (num_bytes_out),
 
-      .transfer_to_host         (block_out_byte),
-      .transfer_to_device       ()
+    //   .transfer_to_host         (block_out_byte),
+    //   .transfer_to_device       ()
         
-     );
+    //  );
 
-    typedef enum {IDLE, DELAY, DELAY2, TX_WAITING, TX_SEND_BYTE, TX_CHECK_DONE, DONE} transfer_state_t;
-    transfer_state_t block_transfer_state;
+    // typedef enum {IDLE, DELAY, DELAY2, TX_WAITING, TX_SEND_BYTE, TX_CHECK_DONE, DONE} transfer_state_t;
+    // transfer_state_t block_transfer_state;
 
-    // Manage block transfer state. 
-    always_ff @(posedge clk or negedge rst_l) begin
-        if(~rst_l) begin
-            block_transfer_state = IDLE;
-            byte_out_count <= 0;
-            block_out_start <= 0;
-            block_out_byte <= 0;
-            num_bytes_out <= 0;
-        end else begin   
-            case (block_transfer_state)
-                IDLE: begin
-                    byte_out_count <= 0;
-                    block_out_start <= 0;
-                    block_out_byte <= 0;
-                    num_bytes_out <= 0;
-                    if (row_len_done & ~transfer_busy) begin
-                        num_bytes_out <= 32;
-                        block_out_start <= 1'b1;
-                        block_transfer_state <= TX_WAITING;
-                    end
-                end
-                TX_WAITING: begin
-                    block_out_byte <= row_len_memory[byte_out_count];
-                    if (block_ready) begin
-                        block_transfer_state <= TX_SEND_BYTE;
-                    end
-                end
-                TX_SEND_BYTE: begin
-                    byte_out_count <= byte_out_count + 1;
-                    block_transfer_state <= TX_CHECK_DONE;
-                end
-                TX_CHECK_DONE: begin
-                    if (byte_out_count == num_bytes_out) begin // Done!
-                        block_transfer_state <= DONE;
-                    end
-                    else if (block_ready) begin
-                        block_transfer_state <= TX_SEND_BYTE;
-                    end
-                    else begin
-                        block_transfer_state <= TX_WAITING;
-                    end
-                end
-                DONE: begin
-                    byte_out_count <= 0;
-                    block_out_start <= 0;
-                    block_out_byte <= 0;
-                    num_bytes_out <= 0;
-                end
-            endcase
-        end
-    end
+    // // Manage block transfer state. 
+    // always_ff @(posedge clk or negedge rst_l) begin
+    //     if(~rst_l) begin
+    //         block_transfer_state = IDLE;
+    //         byte_out_count <= 0;
+    //         block_out_start <= 0;
+    //         block_out_byte <= 0;
+    //         num_bytes_out <= 0;
+    //     end else begin   
+    //         case (block_transfer_state)
+    //             IDLE: begin
+    //                 byte_out_count <= 0;
+    //                 block_out_start <= 0;
+    //                 block_out_byte <= 0;
+    //                 num_bytes_out <= 0;
+    //                 if (row_len_done & ~transfer_busy) begin
+    //                     num_bytes_out <= 32;
+    //                     block_out_start <= 1'b1;
+    //                     block_transfer_state <= TX_WAITING;
+    //                 end
+    //             end
+    //             TX_WAITING: begin
+    //                 block_out_byte <= row_len_memory[byte_out_count];
+    //                 if (block_ready) begin
+    //                     block_transfer_state <= TX_SEND_BYTE;
+    //                 end
+    //             end
+    //             TX_SEND_BYTE: begin
+    //                 byte_out_count <= byte_out_count + 1;
+    //                 block_transfer_state <= TX_CHECK_DONE;
+    //             end
+    //             TX_CHECK_DONE: begin
+    //                 if (byte_out_count == num_bytes_out) begin // Done!
+    //                     block_transfer_state <= DONE;
+    //                 end
+    //                 else if (block_ready) begin
+    //                     block_transfer_state <= TX_SEND_BYTE;
+    //                 end
+    //                 else begin
+    //                     block_transfer_state <= TX_WAITING;
+    //                 end
+    //             end
+    //             DONE: begin
+    //                 byte_out_count <= 0;
+    //                 block_out_start <= 0;
+    //                 block_out_byte <= 0;
+    //                 num_bytes_out <= 0;
+    //             end
+    //         endcase
+    //     end
+    // end
 
 
 

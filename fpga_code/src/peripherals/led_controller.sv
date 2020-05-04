@@ -28,12 +28,6 @@ module led_controller
 
 	 output logic[35:0] out_to_led);
 
-	logic [35:0] flipped_data;
-	always_comb begin
-		for(int i=0; i <= 35; i++)
-    		flipped_data[i] = led_data[35-i];
-	end
-
 	always_ff @(posedge clk or negedge rst_l) begin
 		if(~rst_l) begin
 			out_to_led <= ~36'b0;
@@ -42,7 +36,7 @@ module led_controller
 		else begin
 			if (en) begin
 				if (led_data_ld) begin
-					out_to_led <= ~(flipped_data); // Flip order and bitwise negate to get correct orientiation and voltage levels
+					out_to_led <= ~led_data; // Bitwise negate to get correct and voltage levels
 				end
 			end
 

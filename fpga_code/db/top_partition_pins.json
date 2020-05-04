@@ -12,6 +12,118 @@
 					"strict" : false
 				},
 				{
+					"name" : "LED[0]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[1]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[2]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[3]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[4]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[5]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[6]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[7]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[8]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[9]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[10]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[11]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[12]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[13]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[14]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[15]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[16]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[17]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[18]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[19]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[20]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[21]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[22]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[23]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[24]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[25]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[26]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[27]",
+					"strict" : false
+				},
+				{
 					"name" : "LED[28]",
 					"strict" : false
 				},

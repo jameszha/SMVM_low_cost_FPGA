@@ -85,11 +85,12 @@ namespace matrix_matrix_multiply
             {
                 FPGA.BlockArrayWrite(1, data, (uint)cisr_row_lengths.Length);
             }
+            FPGA.SendRowDoneTrigger();
 
             // Transfer Interleaved CISR Data
             fixed (uint* data = cisr_data)
-            {
-                //FPGA.BlockArrayWrite(3, data, (uint)cisr_data.Length);
+            {   
+                FPGA.BlockArrayWrite(2, data, (uint)cisr_data.Length);
             }
 
 

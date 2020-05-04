@@ -3,7 +3,7 @@ module row_length_receiver
 	 parameter ADDRESS=3'h1)
 	(input logic clk,
 	 input logic rst_l,
-	 input logic rst_trigger,
+
 	 input logic [23:0] uc_in, 
      input logic [21:0] uc_out,
 
@@ -120,7 +120,7 @@ module value_index_receiver
 	 parameter ADDRESS=3'h2)
 	(input logic clk,
 	 input logic rst_l,
-	 input logic rst_trigger,
+
 	 input logic [23:0] uc_in, 
      input logic [21:0] uc_out,
 
@@ -174,6 +174,7 @@ module value_index_receiver
             values <= 'b0;
             column_indices <= 'b0;
             rdy <= 0;
+            toggle_val_index <= 0;
         end else begin   
             case (block_transfer_state)
                 IDLE: begin
@@ -183,6 +184,7 @@ module value_index_receiver
             		values <= 'b0;
             		column_indices <= 'b0;
             		rdy <= 0;
+            		toggle_val_index <= 0;
                     if (block_in_start) begin
                     	block_transfer_state <= RX_WAITING;    
                     end
@@ -216,7 +218,7 @@ module value_index_receiver
 	                endcase
                     curr_byte_in_word <= curr_byte_in_word + 2'b01;
                     if (curr_byte_in_word == 2'b11)
-                    	toggle_val_index = ~toggle_val_index;
+                    	toggle_val_index <= ~toggle_val_index;
                     if (curr_byte_in_word == 2'b11 && toggle_val_index)
                     	curr_channel <= (curr_channel + 'b1) % NUM_CHANNELS;
                     if (curr_byte_in_word == 2'b11 && toggle_val_index && curr_channel == NUM_CHANNELS-1)
@@ -245,3 +247,95 @@ module value_index_receiver
     end
 
 endmodule: value_index_receiver
+
+module cisr_decoder
+   #(parameter NUM_CHANNELS=4,
+   	 parameter ROW_LEN_FIFO_DEPTH=4)
+	(input logic clk,
+	 input logic rst_l,
+
+	 input logic [NUM_CHANNELS-1:0][31:0] cisr_row_lengths,
+     input logic row_len_rdy,
+     input logic row_len_done,
+
+     input logic [NUM_CHANNELS-1:0][31:0] cisr_values,
+     input logic [NUM_CHANNELS-1:0][31:0] cisr_column_indices,
+     input logic val_ind_rdy,
+
+     output logic [NUM_CHANNELS-1:0][31:0] values,
+     output logic [NUM_CHANNELS-1:0][31:0] col_id,
+     output logic [NUM_CHANNELS-1:0][31:0] row_id,
+     output logic rdy,
+
+     output logic row_len_fifo_overflow);
+
+	// The row length FIFO
+	logic [ROW_LEN_FIFO_DEPTH-1:0][NUM_CHANNELS-1:0][31:0] row_len_fifo;
+	logic [15:0] row_len_fifo_counter;
+	assign row_len_fifo_overflow = (row_len_fifo_counter > ROW_LEN_FIFO_DEPTH);
+
+	// Simply forward the values and column indices. The only computation that needs be performed is the calculation of row index
+	assign values = cisr_values;
+	assign col_id = cisr_column_indices;
+	assign rdy = val_ind_rdy;
+
+	// The next row ID to grab when a channel runs out of work to do.
+	logic [31:0] next_row_id;
+
+	typedef enum {READ_ROW_LEN, ROW_LEN_DONE, MULTIPLY} state_t;
+	state_t state;
+	// Manage the Row Length FIFO
+	// Note from James: Using non-blocking assignment to do this is god-awful. Here's some code using blocking assignment. Quartus will hate me, but my sanity won't. 
+	always_ff @(posedge clk or negedge rst_l) begin
+        if(~rst_l) begin
+            row_len_fifo = 'b0;
+            row_len_fifo_counter = 'b1;
+            row_id = 'b0;
+            next_row_id = 0;
+            state = READ_ROW_LEN;
+        end else begin
+        	case (state)
+        		READ_ROW_LEN: begin
+        			if (row_len_rdy) begin // Fill in FIFO as the row lengths are received. This should occur first, before we receive any column/index data
+		            	row_len_fifo[row_len_fifo_counter] = cisr_row_lengths;
+		                row_len_fifo_counter = row_len_fifo_counter + 1;
+		            end
+		            if (row_len_done) begin
+		            	state = ROW_LEN_DONE;
+		            end
+        		end
+        		ROW_LEN_DONE: begin
+					for (int channel_id = 0; channel_id < NUM_CHANNELS; channel_id++) begin
+						for (int i = 0; i < ROW_LEN_FIFO_DEPTH; i++) begin
+							if (row_len_fifo[i][channel_id] == 0) begin
+								row_id[channel_id] = next_row_id;
+								next_row_id = next_row_id + 'b1;
+								row_len_fifo[0][channel_id] = row_len_fifo[1][channel_id];
+							end
+							else break;
+						end
+	            	end
+        			state = MULTIPLY;
+        		end
+        		MULTIPLY: begin
+        			if (val_ind_rdy) begin
+		            	for (int channel_id = 0; channel_id < NUM_CHANNELS; channel_id++) begin // For each channel,
+		            		row_len_fifo[0][channel_id] = row_len_fifo[0][channel_id] - 'b1;	// 1. decrement the row length
+
+		            		for (int i = 0; i < ROW_LEN_FIFO_DEPTH; i++) begin
+			            		if (row_len_fifo[0][channel_id] == 0) begin                      // 2. If the row length becomes 0, i.e. the channel ran out of work to do,
+			            			row_id[channel_id] = next_row_id;						     //    grab the next row id (next_row_id) 
+			            			next_row_id = next_row_id + 'b1;							 //	    and 
+			            			row_len_fifo[0][channel_id] = row_len_fifo[1][channel_id];	 //    grab the next row length (from the next layer of the FIFO)
+			            		end 
+			            		else break;
+			            	end
+		            	end
+		            end
+        		end
+
+        	endcase
+        end
+    end
+
+endmodule: cisr_decoder

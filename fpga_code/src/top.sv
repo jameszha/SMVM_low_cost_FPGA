@@ -19,16 +19,16 @@
 //************************************************************************
 
 module top 
-	(// Clock and Reset
-	 input  logic [1:0]          aa,
+    (// Clock and Reset
+     input  logic [1:0]          aa,
 
-	 // Serial Communication
-	 input  logic [1:0]          bc_in,
-	 output logic [2:0]          bc_out,
-	 inout  wire [7:0]		     bd_inout,
+     // Serial Communication
+     input  logic [1:0]          bc_in,
+     output logic [2:0]          bc_out,
+     inout  wire [7:0]           bd_inout,
 
      // LED
-	 output logic   [35:0]      LED,
+     output logic   [35:0]      LED,
 
      // Button
      input logic    [1:0]       BUTTON,
@@ -37,7 +37,7 @@ module top
      output logic               SD_CLK,
      inout wire                 SD_CMD,
      input logic    [3:0]       SD_DATA
-	);
+    );
 
     //**************************************************
     //*     Trigger-from-Host signals
@@ -46,61 +46,12 @@ module top
     logic rst_trigger;
     assign rst_trigger = trigger_in[7];
 
-	//**************************************************
-	//* 	Clock and Reset
-	//**************************************************
-	logic clk, rst_l;
-  	assign clk = aa[1];
+    //**************************************************
+    //*     Clock and Reset
+    //**************************************************
+    logic clk, rst_l;
+    assign clk = aa[1];
     assign rst_l = aa[0];
-
-    // parameter GLOBAL_RESET_COUNT = 12'h09c8;
-    // logic [11:0] reset_counter;
-    // always @(posedge clk or negedge aa[0]) begin
-    //     if(!aa[0]) begin
-    //         rst_l <= 1'b0;
-    //         reset_counter <= 0;
-    //     end
-    //     else begin
-    //         if( reset_counter < GLOBAL_RESET_COUNT ) begin
-    //             rst_l <= 1'b0;
-    //             reset_counter <= reset_counter + 1'b1;
-    //         end
-    //         else begin
-    //             rst_l <= 1'b1;
-    //         end
-    //     end
-    // end
-	
-    //**************************************************
-    //*     Button Control
-    //**************************************************
-
-    //**************************************************
-    //*     SD Card Control
-    //*     Se: https://github.com/WangXuan95/FPGA-SDcard-Reader
-    //*     TODO: Needs Fixing
-    //**************************************************
-    logic       outreq;    // when outreq=1, a byte of file content is read out from outbyte
-    logic [7:0] outbyte;   // a byte of file content
-
-    logic [3:0] sdcardstate;
-    logic [1:0] sdcardtype;
-    logic [2:0] fatstate;
-    logic [1:0] filesystemtype;
-    logic       file_found;
-
-    // SDFileReader #(.CLK_DIV(1), .FILE_NAME("data.txt")) SD_Card_Read (.clk, .rst_n(rst_l), 
-    //                                                                   .sdclk(SD_CLK),.sdcmd(SD_CMD), .sddat(SD_DATA),
-            
-    //                                                                   // SD Card Information
-    //                                                                   .sdcardstate(sdcardstate),
-    //                                                                   .sdcardtype(sdcardtype),          // 0=Unknown, 1=SDv1.1 , 2=SDv2 , 3=SDHCv2
-    //                                                                   .fatstate(fatstate),              // 3'd6 = DONE
-    //                                                                   .filesystemtype(filesystemtype),  // 0=Unknown, 1=invalid, 2=FAT16, 3=FAT32
-    //                                                                   .file_found(file_found),          // 0=file not found, 1=file found
-                                                                      
-    //                                                                   // SD Card Data
-    //                                                                   .outreq(outreq), .outbyte(outbyte));
 
     //**************************************************
     //*     LED Control
@@ -162,40 +113,87 @@ module top
         
      );
      assign trigger_out[0] = ~BUTTON[1];
-     assign trigger_out[7:2] = 'b0;
+     assign trigger_out[7:1] = 'b0;
 
-    logic [3:0][31:0] row_lengths;
+     parameter NUM_CHANNELS = 4;
+
+    logic [NUM_CHANNELS-1:0][31:0] cisr_row_lengths;
     logic row_len_rdy, row_len_done;
-    assign trigger_out[1] = row_len_rdy;
+    assign row_len_done = trigger_in[0];
     row_length_receiver Row_Length_Receiver (.clk, .rst_l,
-                                             .rst_trigger,
-                                             .uc_in (UC_IN), 
-                                             .uc_out (uc_out_m[ 1*22 +: 22 ]),
+                                             .uc_in(UC_IN), 
+                                             .uc_out(uc_out_m[ 1*22 +: 22 ]),
 
-                                             .row_lengths(row_lengths),
+                                             .row_lengths(cisr_row_lengths),
                                              .rdy(row_len_rdy),
-                                             .done(row_len_done));
+                                             .done());
     
-    
-    logic[127:0] row_lengths_latch_1, row_lengths_latch_2;
-    logic[7:0] row_length_counter;
-    assign led_data = row_length_counter;
+    logic [NUM_CHANNELS-1:0][31:0] cisr_values, cisr_column_indices;
+    logic val_ind_rdy;
+    value_index_receiver Value_Index_Receiver (.clk, .rst_l,
+                                               .uc_in(UC_IN), 
+                                               .uc_out(uc_out_m[ 2*22 +: 22 ]),
 
-    always_ff @(posedge clk or negedge rst_l) begin
-        if(~rst_l) begin
-            row_lengths_latch_1 <= 'b0;
-            row_lengths_latch_2 <= 'b0;
-            row_length_counter <= 'b0;
-        end else begin
-            if (row_len_rdy) begin
-                row_length_counter <= row_length_counter + 1;
-                row_lengths_latch_1 <= row_lengths;
-                row_lengths_latch_2 <= row_lengths_latch_1;
-            end
-        end
-    end
-    logic[31:0][7:0] row_len_memory;
-    assign row_len_memory = {row_lengths_latch_1, row_lengths_latch_2};
+                                               .values(cisr_values),
+                                               .column_indices(cisr_column_indices),
+                                               .rdy(val_ind_rdy));
+
+    logic [NUM_CHANNELS-1:0][31:0] values, col_id, row_id;
+    logic rdy;
+    cisr_decoder CISR_Decoder (.clk, .rst_l,
+                               .cisr_row_lengths(cisr_row_lengths),
+                               .row_len_rdy(row_len_rdy),
+                               .row_len_done(row_len_done),
+
+                               .cisr_values(cisr_values),
+                               .cisr_column_indices(cisr_column_indices),
+                               .val_ind_rdy(val_ind_rdy),
+
+                               .values(values),
+                               .col_id(col_id),
+                               .row_id(row_id),
+                               .rdy(rdy),
+
+                               .row_len_fifo_overflow()); // TODO: connect to status LED later
+
+    logic [5:0][31:0] result;
+    logic done;
+
+    multiplier1 #(.NUM_CHANNELS(4), .MATRIX_SIZE(6)) Mul (.clk, .rst_l,
+                                                         .values(values),
+                                                         .col_id(col_id),
+                                                         .row_id(row_id),
+                                                         .rdy(rdy),
+
+                                                         .accum(result),
+                                                         .done(done));
+
+    // // Temp latch to light up LEDs corresponding to nonzero elements in the decoded matrix
+    // always_ff @(posedge clk or negedge rst_l) begin
+    //     if(~rst_l) begin
+    //         led_data <= 'b0;
+    //     end else begin
+    //         if (rdy) begin
+    //             for (int i = 0; i < NUM_CHANNELS; i++) begin
+    //                 if (values[i] != 0 && col_id[i] < 6) begin
+    //                     // led_data = led_data + 'b1;
+    //                     // led_data = {row_id[i][5:0], col_id[i][5:0]};
+    //                     led_data[row_id[i]*6 + col_id[i]] = 1'b1;
+    //                 end
+    //             end
+    //         end
+    //     end
+    // end
+    // assign led_data[5:0] = result[0][5:0];
+    // assign led_data[11:6] = result[1][5:0];
+    // assign led_data[17:12] = result[2][5:0];
+    // assign led_data[23:18] = result[3][5:0];
+    // assign led_data[29:24] = result[4][5:0];
+    // assign led_data[35:30] = result[5][5:0];
+    assign led_data = 36'hFFFF FFFFF; 
+
+    logic [23:0][7:0] data_out;
+    assign data_out = result;
 
     logic block_out_start;
     logic block_ready;
@@ -226,7 +224,7 @@ module top
         
      );
 
-    typedef enum {IDLE, DELAY, DELAY2, TX_WAITING, TX_SEND_BYTE, TX_CHECK_DONE, DONE} transfer_state_t;
+    typedef enum {IDLE, TX_WAITING, TX_SEND_BYTE, TX_CHECK_DONE, DONE} transfer_state_t;
     transfer_state_t block_transfer_state;
 
     // Manage block transfer state. 
@@ -244,14 +242,14 @@ module top
                     block_out_start <= 0;
                     block_out_byte <= 0;
                     num_bytes_out <= 0;
-                    if (row_len_done & ~transfer_busy) begin
+                    if (done & ~transfer_busy) begin
                         num_bytes_out <= 32;
                         block_out_start <= 1'b1;
                         block_transfer_state <= TX_WAITING;
                     end
                 end
                 TX_WAITING: begin
-                    block_out_byte <= row_len_memory[byte_out_count];
+                    block_out_byte <= data_out[byte_out_count];
                     if (block_ready) begin
                         block_transfer_state <= TX_SEND_BYTE;
                     end
@@ -429,15 +427,15 @@ module top
 
 //   /* Control Register - Used for demo program only. Take in bytes received from host, interpret them, and output control signals
 //      Control Register Register Map
-	 
-// 	 control_register[0]  =  transfer_in_loop_back
-// 	 control_register[1]  =  load_block_image//block_in_loopback 
-// 	 control_register[2]  =  load_ept_image
-// 	 control_register[3]  =  load_face_1_image
-// 	 control_register[4]  =  LED Select Mode[0]
-// 	 control_register[5]  =  LED Select Mode[1]
-// 	 control_register[6]  =  LED Select Mode[2]
-// 	 control_register[7]  =  LED Select Mode[3]
+     
+//   control_register[0]  =  transfer_in_loop_back
+//   control_register[1]  =  load_block_image//block_in_loopback 
+//   control_register[2]  =  load_ept_image
+//   control_register[3]  =  load_face_1_image
+//   control_register[4]  =  LED Select Mode[0]
+//   control_register[5]  =  LED Select Mode[1]
+//   control_register[6]  =  LED Select Mode[2]
+//   control_register[7]  =  LED Select Mode[3]
 //   */
 //   active_control_register      ACTIVE_CONTROL_REG_INST
 //   (
@@ -453,18 +451,18 @@ module top
 //    // Instantiate the EPT Library
 //    //-----------------------------------------------
 
-// 	active_transfer_library	   Active_Transfer_Controller
-// 	(	
-// 	.aa                        (aa),
-// 	.bc_in                     (bc_in),
-// 	.bc_out                    (bc_out),
-// 	.bd_inout                  (bd_inout),
+//  active_transfer_library    Active_Transfer_Controller
+//  (   
+//  .aa                        (aa),
+//  .bc_in                     (bc_in),
+//  .bc_out                    (bc_out),
+//  .bd_inout                  (bd_inout),
 
-// 	.UC_IN                     (UC_IN),
-// 	.UC_OUT                    (UC_OUT)
-	
-// 	);
-	
+//  .UC_IN                     (UC_IN),
+//  .UC_OUT                    (UC_OUT)
+    
+//  );
+    
 //    //-----------------------------------------------
 //    // Instantiate the EPT Library
 //    //-----------------------------------------------
@@ -473,95 +471,95 @@ module top
 
 // /*
 //     Active Trigger Register Mapping
-	
-// 	trigger_in_byte[0]  =  Load Static Value
-// 	trigger_in_byte[1]  =  Load shift_count_value
-// 	trigger_in_byte[2]  =  
-// 	trigger_in_byte[3]  =  
-// 	trigger_in_byte[4]  =  Load Timer Value, timer_value[15:8]
-// 	trigger_in_byte[5]  =  Load Timer Value, timer_value[23:16]
-// 	trigger_in_byte[6]  =  Load linear_feedback_shift_register
-// 	trigger_in_byte[7]  =  start_block_transfer = 1'b1
-	
+    
+//  trigger_in_byte[0]  =  Load Static Value
+//  trigger_in_byte[1]  =  Load shift_count_value
+//  trigger_in_byte[2]  =  
+//  trigger_in_byte[3]  =  
+//  trigger_in_byte[4]  =  Load Timer Value, timer_value[15:8]
+//  trigger_in_byte[5]  =  Load Timer Value, timer_value[23:16]
+//  trigger_in_byte[6]  =  Load linear_feedback_shift_register
+//  trigger_in_byte[7]  =  start_block_transfer = 1'b1
+    
 
 // */
-// 	active_trigger             ACTIVE_TRIGGER_INST
-// 	(
-// 	 .uc_clk                   (CLK_66),
-// 	 .uc_reset                 (RST),
-// 	 .uc_in                    (UC_IN),
-// 	 .uc_out                   (uc_out_m[ 0*22 +: 22 ]),
+//  active_trigger             ACTIVE_TRIGGER_INST
+//  (
+//   .uc_clk                   (CLK_66),
+//   .uc_reset                 (RST),
+//   .uc_in                    (UC_IN),
+//   .uc_out                   (uc_out_m[ 0*22 +: 22 ]),
 
-// 	 .trigger_to_host          (trigger_out),
-// 	 .trigger_to_device        (trigger_in_byte)
-	
-// 	);
-	
-// 	active_transfer            ACTIVE_TRANSFER_INST
-// 	(
-// 	 .uc_clk                   (CLK_66),
-// 	 .uc_reset                 (RST),
-// 	 .uc_in                    (UC_IN),
-// 	 .uc_out                   (uc_out_m[ 2*22 +: 22 ]),
-	
-// 	 .start_transfer           (transfer_out_reg),
-// 	 .transfer_received        (transfer_in_received),
-	
-// 	 .transfer_busy            (),
-	
-// 	 .uc_addr                  (3'h2),
+//   .trigger_to_host          (trigger_out),
+//   .trigger_to_device        (trigger_in_byte)
+    
+//  );
+    
+//  active_transfer            ACTIVE_TRANSFER_INST
+//  (
+//   .uc_clk                   (CLK_66),
+//   .uc_reset                 (RST),
+//   .uc_in                    (UC_IN),
+//   .uc_out                   (uc_out_m[ 2*22 +: 22 ]),
+    
+//   .start_transfer           (transfer_out_reg),
+//   .transfer_received        (transfer_in_received),
+    
+//   .transfer_busy            (),
+    
+//   .uc_addr                  (3'h2),
 
-// 	 .transfer_to_host         (transfer_out_byte),
-// 	 .transfer_to_device       (transfer_in_byte)	
-// 	);
-	
-	
-// 	active_block               BLOCK_TRANSFER_INST
-// 	(
-// 	 .uc_clk                   (CLK_66),
-// 	 .uc_reset                 (RST),
-// 	 .uc_in                    (UC_IN),
-// 	 .uc_out                   (uc_out_m[ 3*22 +: 22 ]),
-	
-// 	 .start_transfer           (block_out_reg),
-// 	 .transfer_received        (block_in_rcv),
-	 
-// 	 .transfer_ready           (block_byte_ready),
-// 	 .transfer_busy            (block_busy),
+//   .transfer_to_host         (transfer_out_byte),
+//   .transfer_to_device       (transfer_in_byte)   
+//  );
+    
+    
+//  active_block               BLOCK_TRANSFER_INST
+//  (
+//   .uc_clk                   (CLK_66),
+//   .uc_reset                 (RST),
+//   .uc_in                    (UC_IN),
+//   .uc_out                   (uc_out_m[ 3*22 +: 22 ]),
+    
+//   .start_transfer           (block_out_reg),
+//   .transfer_received        (block_in_rcv),
+     
+//   .transfer_ready           (block_byte_ready),
+//   .transfer_busy            (block_busy),
 
-// 	 .ept_length               (ept_length),
-	
-// 	 .uc_addr                  (3'h4),
-// 	 .uc_length                (ept_length),
+//   .ept_length               (ept_length),
+    
+//   .uc_addr                  (3'h4),
+//   .uc_length                (ept_length),
 
-// 	 .transfer_to_host         (block_out_byte),
-// 	 .transfer_to_device       (block_in_data)
-	
-// 	);
+//   .transfer_to_host         (block_out_byte),
+//   .transfer_to_device       (block_in_data)
+    
+//  );
 
-// 	active_block               BLOCK_IMAGE_INST
-// 	(
-// 	 .uc_clk                   (CLK_66),
-// 	 .uc_reset                 (RST),
-// 	 .uc_in                    (UC_IN),
-// 	 .uc_out                   (uc_out_m[ 4*22 +: 22 ]),
-	
-// 	 .start_transfer           (block_out_image_start),
-// 	 .transfer_received        (block_in_image_rcv),
-	 
-// 	 .transfer_ready           (block_byte_image_ready),
-// 	 .transfer_busy            (block_image_busy),
+//  active_block               BLOCK_IMAGE_INST
+//  (
+//   .uc_clk                   (CLK_66),
+//   .uc_reset                 (RST),
+//   .uc_in                    (UC_IN),
+//   .uc_out                   (uc_out_m[ 4*22 +: 22 ]),
+    
+//   .start_transfer           (block_out_image_start),
+//   .transfer_received        (block_in_image_rcv),
+     
+//   .transfer_ready           (block_byte_image_ready),
+//   .transfer_busy            (block_image_busy),
 
-// 	 .ept_length               (ept_length_image),
-	
-// 	 .uc_addr                  (3'h2),
-// 	 .uc_length                (ept_length_image),
+//   .ept_length               (ept_length_image),
+    
+//   .uc_addr                  (3'h2),
+//   .uc_length                (ept_length_image),
 
-// 	 .transfer_to_host         (block_out_byte_image),
-// 	 .transfer_to_device       (block_in_data_image)
-	
-// 	);
+//   .transfer_to_host         (block_out_byte_image),
+//   .transfer_to_device       (block_in_data_image)
+    
+//  );
 
-	
+    
 endmodule
 

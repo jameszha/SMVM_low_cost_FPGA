@@ -15,9 +15,9 @@ namespace matrix_matrix_multiply
         {
             Console.WriteLine("Hello World!");
 
-            var dense_path = "matrix_data/matrix.csv";
-            var csr_path = "matrix_data/matrix_csr.csv";
-            var cisr_path = "matrix_data/matrix_cisr.csv";
+            var dense_path = "matrix_data/wide.csv";
+            var csr_path = "matrix_data/wide_csr.csv";
+            var cisr_path = "matrix_data/wide_cisr.csv";
 
             var n = 6;
             var dense_matrix = new Matrix(n, n);
@@ -85,11 +85,12 @@ namespace matrix_matrix_multiply
             {
                 FPGA.BlockArrayWrite(1, data, (uint)cisr_row_lengths.Length);
             }
+            FPGA.SendRowDoneTrigger();
 
             // Transfer Interleaved CISR Data
             fixed (uint* data = cisr_data)
-            {
-                //FPGA.BlockArrayWrite(3, data, (uint)cisr_data.Length);
+            {   
+                FPGA.BlockArrayWrite(2, data, (uint)cisr_data.Length);
             }
 
 

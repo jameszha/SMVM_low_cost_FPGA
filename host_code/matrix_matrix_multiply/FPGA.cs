@@ -236,5 +236,11 @@ public class FPGA
         byte RESET_TRIGGER = 128;
         EPT_AH_SendTrigger(RESET_TRIGGER);
     }
+
+    public static unsafe void SendRowDoneTrigger()
+    {
+        byte ROW_DONE = 1;
+        EPT_AH_SendTrigger(ROW_DONE);
+    }
 }
 

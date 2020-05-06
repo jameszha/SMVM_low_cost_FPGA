@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top
-Wed May 06 00:00:15 2020
+Wed May 06 00:40:17 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -96,15 +96,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed May 06 00:00:15 2020       ;
+; Analysis & Synthesis Status        ; Successful - Wed May 06 00:40:17 2020       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; top                                         ;
 ; Top-level Entity Name              ; top                                         ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 4,362                                       ;
-;     Total combinational functions  ; 3,515                                       ;
-;     Dedicated logic registers      ; 1,788                                       ;
-; Total registers                    ; 1788                                        ;
+; Total logic elements               ; 6,181                                       ;
+;     Total combinational functions  ; 5,205                                       ;
+;     Dedicated logic registers      ; 2,045                                       ;
+; Total registers                    ; 2045                                        ;
 ; Total pins                         ; 59                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 65,536                                      ;
@@ -262,20 +262,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 4,362       ;
+; Estimated Total logic elements              ; 6,181       ;
 ;                                             ;             ;
-; Total combinational functions               ; 3515        ;
+; Total combinational functions               ; 5205        ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 1976        ;
-;     -- 3 input functions                    ; 890         ;
-;     -- <=2 input functions                  ; 649         ;
+;     -- 4 input functions                    ; 3418        ;
+;     -- 3 input functions                    ; 1015        ;
+;     -- <=2 input functions                  ; 772         ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 2802        ;
-;     -- arithmetic mode                      ; 713         ;
+;     -- normal mode                          ; 4367        ;
+;     -- arithmetic mode                      ; 838         ;
 ;                                             ;             ;
-; Total registers                             ; 1788        ;
-;     -- Dedicated logic registers            ; 1788        ;
+; Total registers                             ; 2045        ;
+;     -- Dedicated logic registers            ; 2045        ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
 ; I/O pins                                    ; 59          ;
@@ -284,9 +284,9 @@ https://fpgasoftware.intel.com/eula.
 ; Embedded Multiplier 9-bit elements          ; 24          ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; aa[1]~input ;
-; Maximum fan-out                             ; 1852        ;
-; Total fan-out                               ; 20652       ;
-; Average fan-out                             ; 3.72        ;
+; Maximum fan-out                             ; 2109        ;
+; Total fan-out                               ; 28383       ;
+; Average fan-out                             ; 3.79        ;
 +---------------------------------------------+-------------+
 
 
@@ -295,15 +295,15 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+-------------------------+--------------+
 ; Compilation Hierarchy Node                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                    ; Entity Name             ; Library Name ;
 +---------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+-------------------------+--------------+
-; |top                                                    ; 3515 (212)          ; 1788 (20)                 ; 65536       ; 24           ; 0       ; 12        ; 59   ; 0            ; |top                                                                                                   ; top                     ; work         ;
-;    |active_block:BLOCK_TRANSFER_INST|                   ; 32 (32)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_block:BLOCK_TRANSFER_INST                                                                  ; active_block            ; work         ;
-;    |active_transfer_library:Active_Transfer_Controller| ; 206 (0)             ; 118 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller                                                ; active_transfer_library ; work         ;
-;       |endpoint_registers:ENDPOINT_REGISTERS_INST|      ; 160 (160)           ; 96 (96)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST     ; endpoint_registers      ; work         ;
+; |top                                                    ; 5205 (300)          ; 2045 (20)                 ; 65536       ; 24           ; 0       ; 12        ; 59   ; 0            ; |top                                                                                                   ; top                     ; work         ;
+;    |active_block:BLOCK_TRANSFER_INST|                   ; 33 (33)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_block:BLOCK_TRANSFER_INST                                                                  ; active_block            ; work         ;
+;    |active_transfer_library:Active_Transfer_Controller| ; 207 (0)             ; 119 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller                                                ; active_transfer_library ; work         ;
+;       |endpoint_registers:ENDPOINT_REGISTERS_INST|      ; 161 (161)           ; 97 (97)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST     ; endpoint_registers      ; work         ;
 ;       |ft_245_state_machine:FT_245_STATE_MACHINE_INST|  ; 46 (46)             ; 22 (22)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST ; ft_245_state_machine    ; work         ;
 ;    |active_trigger:ACTIVE_TRIGGER_INST|                 ; 28 (28)             ; 15 (15)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_trigger:ACTIVE_TRIGGER_INST                                                                ; active_trigger          ; work         ;
-;    |cisr_decoder:CISR_Decoder|                          ; 1135 (1135)         ; 433 (433)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|cisr_decoder:CISR_Decoder                                                                         ; cisr_decoder            ; work         ;
+;    |cisr_decoder:CISR_Decoder|                          ; 2067 (2067)         ; 561 (561)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|cisr_decoder:CISR_Decoder                                                                         ; cisr_decoder            ; work         ;
 ;    |led_controller:LED_Control|                         ; 24 (24)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|led_controller:LED_Control                                                                        ; led_controller          ; work         ;
-;    |multiplier1:Mul|                                    ; 1503 (1387)         ; 772 (258)                 ; 65536       ; 24           ; 0       ; 12        ; 0    ; 0            ; |top|multiplier1:Mul                                                                                   ; multiplier1             ; work         ;
+;    |multiplier1:Mul|                                    ; 2171 (2055)         ; 900 (386)                 ; 65536       ; 24           ; 0       ; 12        ; 0    ; 0            ; |top|multiplier1:Mul                                                                                   ; multiplier1             ; work         ;
 ;       |MULT:mul[0].mul|                                 ; 28 (0)              ; 0 (0)                     ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |top|multiplier1:Mul|MULT:mul[0].mul                                                                   ; MULT                    ; work         ;
 ;          |lpm_mult:lpm_mult_component|                  ; 28 (0)              ; 0 (0)                     ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |top|multiplier1:Mul|MULT:mul[0].mul|lpm_mult:lpm_mult_component                                       ; lpm_mult                ; work         ;
 ;             |mult_tfn:auto_generated|                   ; 28 (28)             ; 0 (0)                     ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |top|multiplier1:Mul|MULT:mul[0].mul|lpm_mult:lpm_mult_component|mult_tfn:auto_generated               ; mult_tfn                ; work         ;
@@ -468,11 +468,11 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[5]~reg0                                         ; Lost fanout                                                                    ;
 ; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[6]~reg0                                         ; Lost fanout                                                                    ;
 ; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[7]~reg0                                         ; Lost fanout                                                                    ;
-; num_bytes_out[0..4,6,7]                                                                                                    ; Stuck at GND due to stuck port data_in                                         ;
+; num_bytes_out[0..3,6,7]                                                                                                    ; Stuck at GND due to stuck port data_in                                         ;
 ; cisr_decoder:CISR_Decoder|state[0,2..31]                                                                                   ; Stuck at GND due to stuck port data_in                                         ;
-; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[0..4,6,7] ; Stuck at GND due to stuck port reg_out                                         ;
+; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[0..3,6,7] ; Stuck at GND due to stuck port reg_out                                         ;
 ; value_index_receiver:Value_Index_Receiver|block_transfer_state[2..9,11..31]                                                ; Merged with value_index_receiver:Value_Index_Receiver|block_transfer_state[10] ;
-; num_bytes_out[5]                                                                                                           ; Merged with block_out_start                                                    ;
+; num_bytes_out[4,5]                                                                                                         ; Merged with block_out_start                                                    ;
 ; block_transfer_state[3..9,11..31]                                                                                          ; Merged with block_transfer_state[10]                                           ;
 ; row_length_receiver:Row_Length_Receiver|block_transfer_state[2..9,11..31]                                                  ; Merged with row_length_receiver:Row_Length_Receiver|block_transfer_state[10]   ;
 ; active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[5]                 ; Stuck at GND due to stuck port data_in                                         ;
@@ -483,7 +483,7 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ; value_index_receiver:Value_Index_Receiver|block_transfer_state[10]                                                         ; Stuck at GND due to stuck port data_in                                         ;
 ; row_length_receiver:Row_Length_Receiver|block_transfer_state[10]                                                           ; Stuck at GND due to stuck port data_in                                         ;
 ; block_transfer_state[10]                                                                                                   ; Stuck at GND due to stuck port data_in                                         ;
-; Total Number of Removed Registers = 249                                                                                    ;                                                                                ;
+; Total Number of Removed Registers = 248                                                                                    ;                                                                                ;
 +----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
 
 
@@ -514,8 +514,6 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
 ; num_bytes_out[6]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[6] ;
 ;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
-; num_bytes_out[4]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[4] ;
-;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
 ; num_bytes_out[3]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[3] ;
 ;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
 ; num_bytes_out[2]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[2] ;
@@ -530,12 +528,12 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1788  ;
+; Total registers                              ; 2045  ;
 ; Number of registers using Synchronous Clear  ; 34    ;
-; Number of registers using Synchronous Load   ; 272   ;
-; Number of registers using Asynchronous Clear ; 1761  ;
+; Number of registers using Synchronous Load   ; 431   ;
+; Number of registers using Asynchronous Clear ; 2018  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 936   ;
+; Number of registers using Clock Enable       ; 1193  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -576,7 +574,7 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ; cisr_decoder:CISR_Decoder|row_id[2][1]                                                                          ; 3       ;
 ; cisr_decoder:CISR_Decoder|row_id[1][0]                                                                          ; 3       ;
 ; active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|usb_rxf_n_reg ; 4       ;
-; cisr_decoder:CISR_Decoder|next_row_id[2]                                                                        ; 5       ;
+; cisr_decoder:CISR_Decoder|next_row_id[2]                                                                        ; 4       ;
 ; Total number of inverted registers = 32                                                                         ;         ;
 +-----------------------------------------------------------------------------------------------------------------+---------+
 
@@ -586,26 +584,38 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------+
-; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|read_complete_cntr[7] ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[0][19]                                                                                 ;
-; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[1][28]                                                                                 ;
-; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[2][22]                                                                                 ;
-; 3:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[3][14]                                                                                 ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 62 LEs               ; 0 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|next_row_id[26]                                                                               ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[0][16]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[1][15]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[2][7]                                                                                             ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[3][24]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[4][30]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[5][19]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[6][25]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[7][3]                                                                                             ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][0][2]                                                                         ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][1][26]                                                                        ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][2][30]                                                                        ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][3][20]                                                                        ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; Yes        ; |top|block_transfer_state[1]                                                                                                 ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[3][1]                                                                                  ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|read_complete_cntr[6] ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 62 LEs               ; 0 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|next_row_id[9]                                                                                ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[0][19]                                                                                 ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 62 LEs               ; 0 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[1][4]                                                                                  ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 62 LEs               ; 0 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[2][31]                                                                                 ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 60 LEs               ; 0 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[3][14]                                                                                 ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[0][18]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[1][19]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[2][9]                                                                                             ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[3][17]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[4][28]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[5][23]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[6][20]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[7][6]                                                                                             ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[8][29]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[9][5]                                                                                             ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[10][27]                                                                                           ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[11][4]                                                                                            ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 96 LEs               ; 32 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][0][0]                                                                         ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 96 LEs               ; 32 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][1][18]                                                                        ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 96 LEs               ; 32 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][2][26]                                                                        ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 96 LEs               ; 32 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][3][6]                                                                         ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[1][0][12]                                                                        ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[1][1][26]                                                                        ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[1][2][29]                                                                        ;
+; 7:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[1][3][9]                                                                         ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; Yes        ; |top|block_transfer_state[2]                                                                                                 ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[3][0]                                                                                  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
@@ -613,11 +623,11 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
 ; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
 ; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |top|multiplier1:Mul|Mux9                                                                                                    ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |top|multiplier1:Mul|Mux57                                                                                                   ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |top|multiplier1:Mul|Mux83                                                                                                   ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |top|multiplier1:Mul|Mux98                                                                                                   ;
-; 32:1               ; 8 bits    ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; No         ; |top|Mux7                                                                                                                    ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 256 LEs              ; 64 LEs                 ; No         ; |top|multiplier1:Mul|Mux10                                                                                                   ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 256 LEs              ; 64 LEs                 ; No         ; |top|multiplier1:Mul|Mux46                                                                                                   ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 256 LEs              ; 64 LEs                 ; No         ; |top|multiplier1:Mul|Mux72                                                                                                   ;
+; 16:1               ; 32 bits   ; 320 LEs       ; 256 LEs              ; 64 LEs                 ; No         ; |top|multiplier1:Mul|Mux119                                                                                                  ;
+; 64:1               ; 8 bits    ; 336 LEs       ; 256 LEs              ; 80 LEs                 ; No         ; |top|Mux1                                                                                                                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -645,6 +655,7 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ; Parameter Name ; Value ; Type                                       ;
 +----------------+-------+--------------------------------------------+
 ; NUM_CHANNELS   ; 4     ; Signed Integer                             ;
+; NUM_ROWS       ; 12    ; Signed Integer                             ;
 +----------------+-------+--------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -705,7 +716,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name     ; Value ; Type                                      ;
 +--------------------+-------+-------------------------------------------+
 ; NUM_CHANNELS       ; 4     ; Signed Integer                            ;
-; ROW_LEN_FIFO_DEPTH ; 2     ; Signed Integer                            ;
+; ROW_LEN_FIFO_DEPTH ; 3     ; Signed Integer                            ;
+; NUM_ROWS           ; 12    ; Signed Integer                            ;
 +--------------------+-------+-------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -716,7 +728,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name ; Value ; Type                                ;
 +----------------+-------+-------------------------------------+
 ; NUM_CHANNELS   ; 4     ; Signed Integer                      ;
-; MATRIX_SIZE    ; 8     ; Signed Integer                      ;
+; NUM_ROWS       ; 12    ; Signed Integer                      ;
 +----------------+-------+-------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -1331,32 +1343,32 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 59                          ;
-; cycloneiii_ff         ; 1788                        ;
+; cycloneiii_ff         ; 2045                        ;
 ;     CLR               ; 834                         ;
 ;     CLR SLD           ; 15                          ;
 ;     ENA               ; 14                          ;
-;     ENA CLR           ; 583                         ;
+;     ENA CLR           ; 681                         ;
 ;     ENA CLR SCLR      ; 34                          ;
-;     ENA CLR SLD       ; 295                         ;
+;     ENA CLR SLD       ; 454                         ;
 ;     ENA SLD           ; 10                          ;
 ;     plain             ; 3                           ;
 ; cycloneiii_io_obuf    ; 9                           ;
-; cycloneiii_lcell_comb ; 3573                        ;
-;     arith             ; 713                         ;
-;         2 data inputs ; 462                         ;
-;         3 data inputs ; 251                         ;
-;     normal            ; 2860                        ;
+; cycloneiii_lcell_comb ; 5264                        ;
+;     arith             ; 838                         ;
+;         2 data inputs ; 586                         ;
+;         3 data inputs ; 252                         ;
+;     normal            ; 4426                        ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 87                          ;
-;         2 data inputs ; 156                         ;
-;         3 data inputs ; 639                         ;
-;         4 data inputs ; 1976                        ;
+;         1 data inputs ; 93                          ;
+;         2 data inputs ; 150                         ;
+;         3 data inputs ; 763                         ;
+;         4 data inputs ; 3418                        ;
 ; cycloneiii_mac_mult   ; 12                          ;
 ; cycloneiii_mac_out    ; 12                          ;
 ; cycloneiii_ram_block  ; 64                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 42.70                       ;
-; Average LUT depth     ; 11.48                       ;
+; Max LUT depth         ; 58.40                       ;
+; Average LUT depth     ; 17.91                       ;
 +-----------------------+-----------------------------+
 
 
@@ -1365,7 +1377,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:16     ;
+; Top            ; 00:00:20     ;
 +----------------+--------------+
 
 
@@ -1375,7 +1387,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Tue May 05 23:59:39 2020
+    Info: Processing started: Wed May 06 00:39:44 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top -c top
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -1414,8 +1426,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file src/top
 Info (12127): Elaborating entity "top" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at top.sv(45): object "trigger_out" assigned a value but never read File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 45
 Warning (10036): Verilog HDL or VHDL warning at top.sv(46): object "rst_trigger" assigned a value but never read File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 46
-Warning (10230): Verilog HDL assignment warning at top.sv(264): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 264
-Warning (10230): Verilog HDL assignment warning at top.sv(275): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 275
+Warning (10230): Verilog HDL assignment warning at top.sv(266): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 266
+Warning (10230): Verilog HDL assignment warning at top.sv(277): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 277
 Warning (10030): Net "led_data[35..24]" at top.sv(59) has no driver or initial value, using a default initial value '0' File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 59
 Warning (10034): Output port "SD_CLK" at top.sv(37) has no driver File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 37
 Info (12128): Elaborating entity "led_controller" for hierarchy "led_controller:LED_Control" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 82
@@ -1447,10 +1459,10 @@ Info (12128): Elaborating entity "active_block" for hierarchy "row_length_receiv
 Info (12128): Elaborating entity "value_index_receiver" for hierarchy "value_index_receiver:Value_Index_Receiver" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 139
 Warning (10230): Verilog HDL assignment warning at cisr_receivers.sv(223): truncated value with size 32 to match size of target (2) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/cisr_receivers.sv Line: 223
 Warning (10230): Verilog HDL assignment warning at cisr_receivers.sv(226): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/cisr_receivers.sv Line: 226
-Info (12128): Elaborating entity "cisr_decoder" for hierarchy "cisr_decoder:CISR_Decoder" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 157
-Warning (10230): Verilog HDL assignment warning at cisr_receivers.sv(304): truncated value with size 32 to match size of target (16) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/cisr_receivers.sv Line: 304
+Info (12128): Elaborating entity "cisr_decoder" for hierarchy "cisr_decoder:CISR_Decoder" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 159
+Warning (10230): Verilog HDL assignment warning at cisr_receivers.sv(305): truncated value with size 32 to match size of target (16) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/cisr_receivers.sv Line: 305
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "row_len_fifo" into its bus
-Info (12128): Elaborating entity "multiplier1" for hierarchy "multiplier1:Mul" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 169
+Info (12128): Elaborating entity "multiplier1" for hierarchy "multiplier1:Mul" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 171
 Info (12128): Elaborating entity "ROM" for hierarchy "multiplier1:Mul|ROM:mem0" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/pipelines/row_accumulator.sv Line: 24
 Info (12128): Elaborating entity "altsyncram" for hierarchy "multiplier1:Mul|ROM:mem0|altsyncram:altsyncram_component" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/ROM.v Line: 94
 Info (12130): Elaborated megafunction instantiation "multiplier1:Mul|ROM:mem0|altsyncram:altsyncram_component" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/ROM.v Line: 94
@@ -1543,6 +1555,7 @@ Info (17016): Found the following redundant logic cells in design
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[1]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[2]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[3]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
+    Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[4]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 358
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[4]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[5]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 358
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[5]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
@@ -1577,18 +1590,18 @@ Warning (21074): Design contains 4 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SD_DATA[1]" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 40
     Warning (15610): No output dependent on input pin "SD_DATA[2]" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 40
     Warning (15610): No output dependent on input pin "SD_DATA[3]" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 40
-Info (21057): Implemented 4608 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 6337 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 10 input pins
     Info (21059): Implemented 40 output pins
     Info (21060): Implemented 9 bidirectional pins
-    Info (21061): Implemented 4461 logic cells
+    Info (21061): Implemented 6190 logic cells
     Info (21064): Implemented 64 RAM segments
     Info (21062): Implemented 24 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 56 warnings
-    Info: Peak virtual memory: 4817 megabytes
-    Info: Processing ended: Wed May 06 00:00:15 2020
-    Info: Elapsed time: 00:00:36
-    Info: Total CPU time (on all processors): 00:00:54
+    Info: Peak virtual memory: 4818 megabytes
+    Info: Processing ended: Wed May 06 00:40:17 2020
+    Info: Elapsed time: 00:00:33
+    Info: Total CPU time (on all processors): 00:00:47
 
 
 +------------------------------------------+

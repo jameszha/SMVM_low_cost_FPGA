@@ -22,30 +22,31 @@ namespace matrix_matrix_multiply
             var csr_path = "matrix_data/wide_csr.csv";
             var cisr_path = "matrix_data/wide_cisr.csv";
 
+            // Obtain Matrix Dimensions
+            var n = File.ReadAllLines(dense_path).Length;
             StreamReader sr = new StreamReader(dense_path);
-            var m =sr.ReadLine().Split(',').Length;
-            var n = 8;
+            var m = sr.ReadLine().Split(',').Length;
+            sr.Close();
 
-            //var dense_matrix = new MyMatrix(n, m);
             var matrix = Matrix.CreateSparse<double>(n, m);
+
 
             // Load Dense Matrix Representation
             using (TextFieldParser csv_parser = new TextFieldParser(dense_path))
             {
                 csv_parser.CommentTokens = new string[] { "#" };
                 csv_parser.SetDelimiters(new string[] { "," });
-
                 for(int i = 0; i < n; i++)
                 {
                     string[] row_data = csv_parser.ReadFields();
                     for (int j = 0; j < m; j++)
                     {
-                        //dense_matrix[i,j] = Convert.ToInt32(row_data[j]);
                         matrix[i, j] = Convert.ToDouble(row_data[j]);
                     }
                     
                 }
             }
+
 
             // Load CISR Matrix Representation
             UInt32[] cisr_values;
@@ -74,27 +75,14 @@ namespace matrix_matrix_multiply
             Console.WriteLine("CISR Column Indices: " + String.Join(", ", cisr_column_indices));
             Console.WriteLine("CISR Row Lengths:    " + String.Join(", ", cisr_row_lengths));
 
-            // Generate Reference Solution
-            /*int[] vector_array = new int[m];
-            for (int i = 0; i < m; i++)
-            {
-                vector_array[i] = i;
-            }
-            var vector = Vector.Create(vector_array);*/
 
+            // Generate and Time Reference Solution
             var vector = Matrix.CreateSparse<double>(m, 1);
             for (int i = 0; i < m; i++)
             {
                 vector[i, 0] = i % 1024;
             }
-
             Matrix<double> result;
-          
-            /*var vector = new MyMatrix(m, 1);
-            for (int i = 0; i < m; i++)
-            {
-                vector[i, 0] = i;
-            }*/
 
             var ref_watch = new System.Diagnostics.Stopwatch();
             ref_watch.Start();
@@ -102,9 +90,10 @@ namespace matrix_matrix_multiply
             ref_watch.Stop();
             Console.WriteLine("Result:");
             Console.WriteLine(result);
-            Console.WriteLine("Multiplication Time: {0} us", (double)ref_watch.ElapsedTicks / Stopwatch.Frequency * 1000000);
+            Console.WriteLine("Extreme Library Multiplication Time: {0} us", (double)ref_watch.ElapsedTicks / Stopwatch.Frequency * 1000000);
 
-            // Interleave Value and Column Indices into single array
+
+            // Interleave CISR Value and Column Indices into single array
             int num_nonzeros = cisr_values.Length;
             uint[] cisr_data = new uint[2 * num_nonzeros];
             for (int i = 0; i < num_nonzeros; i++)
@@ -130,17 +119,8 @@ namespace matrix_matrix_multiply
             {   
                 FPGA.BlockArrayWrite(2, data, (uint)cisr_data.Length);
             }
+
             while (true) ;
         }
     }
 }
-
-
-// Reference Solution
-//var mmm_watch = new System.Diagnostics.Stopwatch();
-//mmm_watch.Start();
-//var output_matrix = matrix_A * matrix_B;
-//var output_matrix = Matrix.StupidMultiply(matrix_A, matrix_B);
-//mmm_watch.Stop();
-//Console.WriteLine(output_matrix);
-//Console.WriteLine("Matrix-Matrix Multiply Time: {0} us", (double)mmm_watch.ElapsedTicks / Stopwatch.Frequency * 1000000);

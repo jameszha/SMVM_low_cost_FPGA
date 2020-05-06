@@ -30,11 +30,9 @@ CYAN =      "\u001b[36m"
 WHITE =     "\u001b[37m"
 RESET =     "\u001b[0m"
 
-NUM_ROWS = 8
-
-def generate_matrix(size=8, density=0.25, num_slots=4, output_name=None):
+def generate_matrix(n=8, m=1024, density=0.25, num_slots=4, output_name=None):
     # Generate random sparse square matrix with given size and density
-    M = sparse.rand(NUM_ROWS, size, density=density, format="csr", dtype=np.uint8)
+    M = sparse.rand(n, m, density=density, format="csr", dtype=np.uint8)
     if (verbose):
         print("Dense Format:")
         print("\t" + str(M.todense()).replace('\n','\n\t'))
@@ -54,9 +52,9 @@ def generate_matrix(size=8, density=0.25, num_slots=4, output_name=None):
     # Generate CISR slot assignments
     num_nonzero = sparse.csr_matrix.count_nonzero(M)
     row_lengths = np.diff(M.indptr)
-    slot_assignments = np.zeros(NUM_ROWS, dtype=int)
+    slot_assignments = np.zeros(n, dtype=int)
     slot_sizes = np.zeros(num_slots, dtype=int)
-    for i in range(NUM_ROWS):
+    for i in range(n):
         next_slot = np.argmin(slot_sizes)
         slot_assignments[i] = next_slot
         slot_sizes[next_slot] += row_lengths[i]
@@ -67,7 +65,7 @@ def generate_matrix(size=8, density=0.25, num_slots=4, output_name=None):
     cisr_column_indices = np.zeros(num_slots * max(slot_sizes), dtype=int) 
     for slot_id in range(num_slots): 
         slot_position = 0
-        for row_id in range(NUM_ROWS):
+        for row_id in range(n):
             if (slot_assignments[row_id] == slot_id):
                 for col_id in range(row_lengths[row_id]):
                     value = M.getrow(row_id).data[col_id]
@@ -77,7 +75,7 @@ def generate_matrix(size=8, density=0.25, num_slots=4, output_name=None):
                     slot_position += 1
     for slot_id in range(num_slots):
         slot_position = 0;
-        for row_id in range(NUM_ROWS):
+        for row_id in range(n):
             if (slot_assignments[row_id] == slot_id):
                 cisr_row_lengths[slot_id + slot_position*num_slots] = row_lengths[row_id]
                 slot_position += 1
@@ -130,7 +128,8 @@ def get_args():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-n', '--n', help="Matrix Size", type=int, default=8)
+    parser.add_argument('-n', '--num_rows', help="Number of rows", type=int, default=8)
+    parser.add_argument('-m', '--num_cols', help="Number of columns", type=int, default=1024)
     parser.add_argument('-d', '--density', help="Matrix Density", type=density_type, default=0.25)
     parser.add_argument('-s', '--num_slots', help="Number of slots for CISR encoding.", type=int, default=4)
     parser.add_argument('-o', '--output', help="Output name. Produces files <output>.csv, <output>_csr.csv, <output>_cisr.csv")
@@ -147,7 +146,7 @@ if __name__ == '__main__':
     if args.verbose:
         verbose = True
 
-    generate_matrix(size=args.n, density=args.density, num_slots=args.num_slots, output_name=args.output)
+    generate_matrix(n=args.num_rows, m=args.num_cols, density=args.density, num_slots=args.num_slots, output_name=args.output)
 
     print("\nTotal time taken: " + str(time.time() - start_time) + " seconds")
     sys.stdout.flush()

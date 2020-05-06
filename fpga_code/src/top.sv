@@ -140,33 +140,35 @@ module top
 
     logic [NUM_CHANNELS-1:0][31:0] values, col_id, row_id;
     logic rdy;
-    cisr_decoder CISR_Decoder (.clk, .rst_l,
-                               .cisr_row_lengths(cisr_row_lengths),
-                               .row_len_rdy(row_len_rdy),
-                               .row_len_done(row_len_done),
 
-                               .cisr_values(cisr_values),
-                               .cisr_column_indices(cisr_column_indices),
-                               .val_ind_rdy(val_ind_rdy),
+    parameter NUM_ROWS = 12;
+    cisr_decoder #(.NUM_ROWS(NUM_ROWS)) CISR_Decoder (.clk, .rst_l,
+                                                      .cisr_row_lengths(cisr_row_lengths),
+                                                      .row_len_rdy(row_len_rdy),
+                                                      .row_len_done(row_len_done),
 
-                               .values(values),
-                               .col_id(col_id),
-                               .row_id(row_id),
-                               .rdy(rdy),
+                                                     .cisr_values(cisr_values),
+                                                     .cisr_column_indices(cisr_column_indices),
+                                                     .val_ind_rdy(val_ind_rdy),
 
-                               .row_len_fifo_overflow()); // TODO: connect to status LED later
+                                                     .values(values),
+                                                     .col_id(col_id),
+                                                     .row_id(row_id),
+                                                     .rdy(rdy),
 
-    logic [7:0][31:0] result;
+                                                     .row_len_fifo_overflow());
+
+    logic [NUM_ROWS-1:0][31:0] result;
     logic done;
 
-    multiplier1 #(.NUM_CHANNELS(4), .MATRIX_SIZE(8)) Mul (.clk, .rst_l,
-                                                         .values(values),
-                                                         .col_id(col_id),
-                                                         .row_id(row_id),
-                                                         .rdy(rdy),
+    multiplier1 #(.NUM_CHANNELS(4), .NUM_ROWS(NUM_ROWS)) Mul (.clk, .rst_l,
+                                                              .values(values),
+                                                              .col_id(col_id),
+                                                              .row_id(row_id),
+                                                              .rdy(rdy),
 
-                                                         .accum(result),
-                                                         .done(done));
+                                                              .accum(result),
+                                                              .done(done));
 
     // always_ff @(posedge clk or negedge rst_l) begin
     //     if(~rst_l) begin
@@ -206,7 +208,7 @@ module top
     // assign led_data[35] = done;
     // assign led_data = result[1];
 
-    logic [31:0][7:0] data_out;
+    logic [NUM_ROWS*4-1:0][7:0] data_out;
     assign data_out = result;
 
     logic block_out_start;
@@ -261,7 +263,7 @@ module top
                     end
                 end
                 DELAY: begin
-                    num_bytes_out <= 8*4;
+                    num_bytes_out <= NUM_ROWS*4;
                     block_out_start <= 1'b1;
                     block_transfer_state <= TX_WAITING;
                 end

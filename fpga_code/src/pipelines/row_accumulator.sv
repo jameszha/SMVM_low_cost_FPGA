@@ -2,7 +2,7 @@
 
 module multiplier1
 	#(parameter NUM_CHANNELS=4,
-		parameter MATRIX_SIZE=128)
+		parameter NUM_ROWS=128)
 	(input logic clk, rst_l,
 
 	input logic [NUM_CHANNELS-1:0][31:0] values,
@@ -10,7 +10,7 @@ module multiplier1
     input logic [NUM_CHANNELS-1:0][31:0] row_id,
     input logic rdy,
 
-    output logic [MATRIX_SIZE-1:0][31:0]           accum,
+    output logic [NUM_ROWS-1:0][31:0]           accum,
     output logic done);
 
 
@@ -86,7 +86,7 @@ module multiplier1
 	logic [NUM_CHANNELS-1:0][31:0] mult_values;
 	generate
 		for(k=0; k<NUM_CHANNELS; k++) begin: mul
-			assign channel_finished[k] = (row_id_stored1[k] >= MATRIX_SIZE);
+			assign channel_finished[k] = (row_id_stored1[k] >= NUM_ROWS);
 
 			MULT mul(
 				.dataa(matrix_values_stored1[k]), // Matrix column value

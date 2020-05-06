@@ -250,7 +250,8 @@ endmodule: value_index_receiver
 
 module cisr_decoder
    #(parameter NUM_CHANNELS=4,
-     parameter ROW_LEN_FIFO_DEPTH=2)
+     parameter ROW_LEN_FIFO_DEPTH=3,
+     parameter NUM_ROWS=12)
     (input logic clk,
      input logic rst_l,
 
@@ -313,11 +314,11 @@ module cisr_decoder
                             row_len_fifo[0][channel_id] = row_len_fifo[0][channel_id] - 'b1;    // 1. decrement the row length
 
                             for (int i = 0; i < ROW_LEN_FIFO_DEPTH; i++) begin
-                                if (row_len_fifo[0][channel_id] == 0) begin                      // 2. If the row length becomes 0, i.e. the channel ran out of work to do,
-                                    row_id[channel_id] = next_row_id;                            //    grab the next row id (next_row_id) 
-                                    next_row_id = (next_row_id == 8) ? 8 : next_row_id + 'b1;    //     and 
-                                    row_len_fifo[0][channel_id] = row_len_fifo[1][channel_id];   //    grab the next row length (from the next layer of the FIFO)
-                                    // row_len_fifo[2][channel_id] = 'b0;
+                                if (row_len_fifo[0][channel_id] == 0) begin                                 // 2. If the row length becomes 0, i.e. the channel ran out of work to do,
+                                    row_id[channel_id] = next_row_id;                                       //    grab the next row id (next_row_id) 
+                                    next_row_id = (next_row_id == NUM_ROWS) ? NUM_ROWS : next_row_id + 'b1; //     and 
+                                    row_len_fifo[0][channel_id] = row_len_fifo[1][channel_id];              //    grab the next row length (from the next layer of the FIFO)
+                                    row_len_fifo[1][channel_id] = row_len_fifo[2][channel_id];
                                 end 
                                 else break;
                             end

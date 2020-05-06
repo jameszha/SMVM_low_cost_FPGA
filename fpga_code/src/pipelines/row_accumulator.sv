@@ -100,9 +100,10 @@ module multiplier1
 	typedef enum {MULT, DONE} state_t;
 	state_t state;
 
-	always_ff @(posedge clk, negedge rst_l) begin : proc_
+	always_ff @(posedge clk, negedge rst_l) begin
 		if(~rst_l) begin
-			accum <= 0;
+			done <= 0;
+			accum <= 'b0;
 			state <= MULT;
 		end else begin
 			accum <= accum;

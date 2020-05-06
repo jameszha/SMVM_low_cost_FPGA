@@ -250,7 +250,7 @@ endmodule: value_index_receiver
 
 module cisr_decoder
    #(parameter NUM_CHANNELS=4,
-     parameter ROW_LEN_FIFO_DEPTH=4)
+     parameter ROW_LEN_FIFO_DEPTH=2)
     (input logic clk,
      input logic rst_l,
 
@@ -288,34 +288,24 @@ module cisr_decoder
     // Note from James: Using non-blocking assignment to do this is god-awful. Here's some code using blocking assignment. Quartus will hate me, but my sanity won't. 
     always_ff @(posedge clk or negedge rst_l) begin
         if(~rst_l) begin
-            row_len_fifo = 'b0;
-            row_len_fifo_counter = 'b1;
-            row_id = 'b0;
-            next_row_id = 0;
-            state = READ_ROW_LEN;
+            row_len_fifo <= 'b0;
+            row_len_fifo_counter <= 'b0;
+            row_id[0] <= 'd0;
+            row_id[1] <= 'd1;
+            row_id[2] <= 'd2;
+            row_id[3] <= 'd3;
+            next_row_id <= 'd4;
+            state <= READ_ROW_LEN;
         end else begin
             case (state)
                 READ_ROW_LEN: begin
                     if (row_len_rdy) begin // Fill in FIFO as the row lengths are received. This should occur first, before we receive any column/index data
-                        row_len_fifo[row_len_fifo_counter] = cisr_row_lengths;
-                        row_len_fifo_counter = row_len_fifo_counter + 1;
+                        row_len_fifo[row_len_fifo_counter] <= cisr_row_lengths;
+                        row_len_fifo_counter <= row_len_fifo_counter + 1;
                     end
                     if (row_len_done) begin
-                        state = ROW_LEN_DONE;
+                        state <= MULTIPLY;
                     end
-                end
-                ROW_LEN_DONE: begin
-                    for (int channel_id = 0; channel_id < NUM_CHANNELS; channel_id++) begin
-                        for (int i = 0; i < ROW_LEN_FIFO_DEPTH; i++) begin
-                            if (row_len_fifo[i][channel_id] == 0) begin
-                                row_id[channel_id] = next_row_id;
-                                next_row_id = (next_row_id == 6) ? 6 : next_row_id + 'b1;
-                                row_len_fifo[0][channel_id] = row_len_fifo[1][channel_id];
-                            end
-                            else break;
-                        end
-                    end
-                    state = MULTIPLY;
                 end
                 MULTIPLY: begin
                     if (val_ind_rdy) begin
@@ -325,8 +315,9 @@ module cisr_decoder
                             for (int i = 0; i < ROW_LEN_FIFO_DEPTH; i++) begin
                                 if (row_len_fifo[0][channel_id] == 0) begin                      // 2. If the row length becomes 0, i.e. the channel ran out of work to do,
                                     row_id[channel_id] = next_row_id;                            //    grab the next row id (next_row_id) 
-                                    next_row_id = (next_row_id == 6) ? 6 : next_row_id + 'b1;    //     and 
+                                    next_row_id = (next_row_id == 8) ? 8 : next_row_id + 'b1;    //     and 
                                     row_len_fifo[0][channel_id] = row_len_fifo[1][channel_id];   //    grab the next row length (from the next layer of the FIFO)
+                                    // row_len_fifo[2][channel_id] = 'b0;
                                 end 
                                 else break;
                             end

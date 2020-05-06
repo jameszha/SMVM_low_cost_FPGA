@@ -156,10 +156,10 @@ module top
 
                                .row_len_fifo_overflow()); // TODO: connect to status LED later
 
-    logic [5:0][31:0] result;
+    logic [7:0][31:0] result;
     logic done;
 
-    multiplier1 #(.NUM_CHANNELS(4), .MATRIX_SIZE(6)) Mul (.clk, .rst_l,
+    multiplier1 #(.NUM_CHANNELS(4), .MATRIX_SIZE(8)) Mul (.clk, .rst_l,
                                                          .values(values),
                                                          .col_id(col_id),
                                                          .row_id(row_id),
@@ -197,16 +197,16 @@ module top
     //         end
     //     end
     // end
-    // assign led_data[5:0] = row_id[0][5:0];
-    // assign led_data[11:6] = row_id[1][5:0];
-    // assign led_data[17:12] = row_id[2][5:0];
-    // assign led_data[23:18] = row_id[3][5:0];
+    assign led_data[5:0] = row_id[0][5:0];
+    assign led_data[11:6] = row_id[1][5:0];
+    assign led_data[17:12] = row_id[2][5:0];
+    assign led_data[23:18] = row_id[3][5:0];
 
 
     // assign led_data[35] = done;
-    assign led_data = result[1];
+    // assign led_data = result[1];
 
-    logic [23:0][7:0] data_out;
+    logic [31:0][7:0] data_out;
     assign data_out = result;
 
     logic block_out_start;
@@ -238,7 +238,7 @@ module top
         
      );
 
-    typedef enum {IDLE, TX_WAITING, TX_SEND_BYTE, TX_CHECK_DONE, DONE} transfer_state_t;
+    typedef enum {IDLE, DELAY, TX_WAITING, TX_SEND_BYTE, TX_CHECK_DONE, DONE} transfer_state_t;
     transfer_state_t block_transfer_state;
 
     // Manage block transfer state. 
@@ -257,10 +257,13 @@ module top
                     block_out_byte <= 0;
                     num_bytes_out <= 0;
                     if (done & ~transfer_busy) begin
-                        num_bytes_out <= 6*4;
-                        block_out_start <= 1'b1;
-                        block_transfer_state <= TX_WAITING;
+                        block_transfer_state <= DELAY;
                     end
+                end
+                DELAY: begin
+                    num_bytes_out <= 8*4;
+                    block_out_start <= 1'b1;
+                    block_transfer_state <= TX_WAITING;
                 end
                 TX_WAITING: begin
                     block_out_byte <= data_out[byte_out_count];

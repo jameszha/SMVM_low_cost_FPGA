@@ -30,7 +30,7 @@ CYAN =      "\u001b[36m"
 WHITE =     "\u001b[37m"
 RESET =     "\u001b[0m"
 
-NUM_ROWS = 6
+NUM_ROWS = 8
 
 def generate_matrix(size=8, density=0.25, num_slots=4, output_name=None):
     # Generate random sparse square matrix with given size and density

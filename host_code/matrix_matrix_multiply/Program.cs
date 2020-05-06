@@ -24,7 +24,7 @@ namespace matrix_matrix_multiply
 
             StreamReader sr = new StreamReader(dense_path);
             var m =sr.ReadLine().Split(',').Length;
-            var n = 6;
+            var n = 8;
 
             //var dense_matrix = new MyMatrix(n, m);
             var matrix = Matrix.CreateSparse<double>(n, m);

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top
-Tue May 05 16:48:42 2020
+Wed May 06 00:00:15 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -96,15 +96,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue May 05 16:48:41 2020       ;
+; Analysis & Synthesis Status        ; Successful - Wed May 06 00:00:15 2020       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; top                                         ;
 ; Top-level Entity Name              ; top                                         ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 6,856                                       ;
-;     Total combinational functions  ; 5,748                                       ;
-;     Dedicated logic registers      ; 1,990                                       ;
-; Total registers                    ; 1990                                        ;
+; Total logic elements               ; 4,362                                       ;
+;     Total combinational functions  ; 3,515                                       ;
+;     Dedicated logic registers      ; 1,788                                       ;
+; Total registers                    ; 1788                                        ;
 ; Total pins                         ; 59                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 65,536                                      ;
@@ -262,20 +262,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 6,856       ;
+; Estimated Total logic elements              ; 4,362       ;
 ;                                             ;             ;
-; Total combinational functions               ; 5748        ;
+; Total combinational functions               ; 3515        ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 3013        ;
-;     -- 3 input functions                    ; 1341        ;
-;     -- <=2 input functions                  ; 1394        ;
+;     -- 4 input functions                    ; 1976        ;
+;     -- 3 input functions                    ; 890         ;
+;     -- <=2 input functions                  ; 649         ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 4320        ;
-;     -- arithmetic mode                      ; 1428        ;
+;     -- normal mode                          ; 2802        ;
+;     -- arithmetic mode                      ; 713         ;
 ;                                             ;             ;
-; Total registers                             ; 1990        ;
-;     -- Dedicated logic registers            ; 1990        ;
+; Total registers                             ; 1788        ;
+;     -- Dedicated logic registers            ; 1788        ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
 ; I/O pins                                    ; 59          ;
@@ -284,9 +284,9 @@ https://fpgasoftware.intel.com/eula.
 ; Embedded Multiplier 9-bit elements          ; 24          ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; aa[1]~input ;
-; Maximum fan-out                             ; 2054        ;
-; Total fan-out                               ; 28451       ;
-; Average fan-out                             ; 3.56        ;
+; Maximum fan-out                             ; 1852        ;
+; Total fan-out                               ; 20652       ;
+; Average fan-out                             ; 3.72        ;
 +---------------------------------------------+-------------+
 
 
@@ -295,15 +295,15 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+-------------------------+--------------+
 ; Compilation Hierarchy Node                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                    ; Entity Name             ; Library Name ;
 +---------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+-------------------------+--------------+
-; |top                                                    ; 5748 (171)          ; 1990 (20)                 ; 65536       ; 24           ; 0       ; 12        ; 59   ; 0            ; |top                                                                                                   ; top                     ; work         ;
-;    |active_block:BLOCK_TRANSFER_INST|                   ; 33 (33)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_block:BLOCK_TRANSFER_INST                                                                  ; active_block            ; work         ;
-;    |active_transfer_library:Active_Transfer_Controller| ; 208 (0)             ; 119 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller                                                ; active_transfer_library ; work         ;
-;       |endpoint_registers:ENDPOINT_REGISTERS_INST|      ; 162 (162)           ; 97 (97)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST     ; endpoint_registers      ; work         ;
+; |top                                                    ; 3515 (212)          ; 1788 (20)                 ; 65536       ; 24           ; 0       ; 12        ; 59   ; 0            ; |top                                                                                                   ; top                     ; work         ;
+;    |active_block:BLOCK_TRANSFER_INST|                   ; 32 (32)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_block:BLOCK_TRANSFER_INST                                                                  ; active_block            ; work         ;
+;    |active_transfer_library:Active_Transfer_Controller| ; 206 (0)             ; 118 (0)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller                                                ; active_transfer_library ; work         ;
+;       |endpoint_registers:ENDPOINT_REGISTERS_INST|      ; 160 (160)           ; 96 (96)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST     ; endpoint_registers      ; work         ;
 ;       |ft_245_state_machine:FT_245_STATE_MACHINE_INST|  ; 46 (46)             ; 22 (22)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST ; ft_245_state_machine    ; work         ;
 ;    |active_trigger:ACTIVE_TRIGGER_INST|                 ; 28 (28)             ; 15 (15)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|active_trigger:ACTIVE_TRIGGER_INST                                                                ; active_trigger          ; work         ;
-;    |cisr_decoder:CISR_Decoder|                          ; 3672 (3672)         ; 690 (690)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|cisr_decoder:CISR_Decoder                                                                         ; cisr_decoder            ; work         ;
-;    |led_controller:LED_Control|                         ; 32 (32)             ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|led_controller:LED_Control                                                                        ; led_controller          ; work         ;
-;    |multiplier1:Mul|                                    ; 1229 (1117)         ; 708 (194)                 ; 65536       ; 24           ; 0       ; 12        ; 0    ; 0            ; |top|multiplier1:Mul                                                                                   ; multiplier1             ; work         ;
+;    |cisr_decoder:CISR_Decoder|                          ; 1135 (1135)         ; 433 (433)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|cisr_decoder:CISR_Decoder                                                                         ; cisr_decoder            ; work         ;
+;    |led_controller:LED_Control|                         ; 24 (24)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|led_controller:LED_Control                                                                        ; led_controller          ; work         ;
+;    |multiplier1:Mul|                                    ; 1503 (1387)         ; 772 (258)                 ; 65536       ; 24           ; 0       ; 12        ; 0    ; 0            ; |top|multiplier1:Mul                                                                                   ; multiplier1             ; work         ;
 ;       |MULT:mul[0].mul|                                 ; 28 (0)              ; 0 (0)                     ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |top|multiplier1:Mul|MULT:mul[0].mul                                                                   ; MULT                    ; work         ;
 ;          |lpm_mult:lpm_mult_component|                  ; 28 (0)              ; 0 (0)                     ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |top|multiplier1:Mul|MULT:mul[0].mul|lpm_mult:lpm_mult_component                                       ; lpm_mult                ; work         ;
 ;             |mult_tfn:auto_generated|                   ; 28 (28)             ; 0 (0)                     ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |top|multiplier1:Mul|MULT:mul[0].mul|lpm_mult:lpm_mult_component|mult_tfn:auto_generated               ; mult_tfn                ; work         ;
@@ -330,15 +330,15 @@ https://fpgasoftware.intel.com/eula.
 ;       |register:store[0].row_id_store1|                 ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[0].row_id_store1                                                   ; register                ; work         ;
 ;       |register:store[1].matrix_value_store0|           ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[1].matrix_value_store0                                             ; register                ; work         ;
 ;       |register:store[1].matrix_value_store1|           ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[1].matrix_value_store1                                             ; register                ; work         ;
-;       |register:store[1].row_id_store0|                 ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[1].row_id_store0                                                   ; register                ; work         ;
+;       |register:store[1].row_id_store0|                 ; 1 (1)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[1].row_id_store0                                                   ; register                ; work         ;
 ;       |register:store[1].row_id_store1|                 ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[1].row_id_store1                                                   ; register                ; work         ;
 ;       |register:store[2].matrix_value_store0|           ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[2].matrix_value_store0                                             ; register                ; work         ;
 ;       |register:store[2].matrix_value_store1|           ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[2].matrix_value_store1                                             ; register                ; work         ;
-;       |register:store[2].row_id_store0|                 ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[2].row_id_store0                                                   ; register                ; work         ;
+;       |register:store[2].row_id_store0|                 ; 1 (1)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[2].row_id_store0                                                   ; register                ; work         ;
 ;       |register:store[2].row_id_store1|                 ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[2].row_id_store1                                                   ; register                ; work         ;
 ;       |register:store[3].matrix_value_store0|           ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[3].matrix_value_store0                                             ; register                ; work         ;
 ;       |register:store[3].matrix_value_store1|           ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[3].matrix_value_store1                                             ; register                ; work         ;
-;       |register:store[3].row_id_store0|                 ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[3].row_id_store0                                                   ; register                ; work         ;
+;       |register:store[3].row_id_store0|                 ; 2 (2)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[3].row_id_store0                                                   ; register                ; work         ;
 ;       |register:store[3].row_id_store1|                 ; 0 (0)               ; 32 (32)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|multiplier1:Mul|register:store[3].row_id_store1                                                   ; register                ; work         ;
 ;    |row_length_receiver:Row_Length_Receiver|            ; 82 (50)             ; 172 (141)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|row_length_receiver:Row_Length_Receiver                                                           ; row_length_receiver     ; work         ;
 ;       |active_block:Block_Receiver|                     ; 32 (32)             ; 31 (31)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver                               ; active_block            ; work         ;
@@ -419,73 +419,72 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                                                                           ;
-+-----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-; Register name                                                                                                               ; Reason for Removal                                                             ;
-+-----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-; multiplier1:Mul|state[1..31]                                                                                                ; Stuck at GND due to stuck port data_in                                         ;
-; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|address_from_device[2]        ; Stuck at GND due to stuck port reg_out                                         ;
-; led_controller:LED_Control|out_to_led[0..3]                                                                                 ; Stuck at VCC due to stuck port data_in                                         ;
-; active_block:BLOCK_TRANSFER_INST|state_in[1,2]                                                                              ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|ept_length[7]~reg0                                                                         ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|state_in[3,5]                                                                              ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|transfer_received_count[0..7]                                                              ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|ept_length[4]~reg0                                                                         ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|ept_length[3]~reg0                                                                         ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|ept_length[2]~reg0                                                                         ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|ept_length[1]~reg0                                                                         ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|ept_length[0]~reg0                                                                         ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|ept_length[6]~reg0                                                                         ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|ept_length[5]~reg0                                                                         ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|state_in[0,4]                                                                              ; Lost fanout                                                                    ;
-; active_block:BLOCK_TRANSFER_INST|transfer_received~reg0                                                                     ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|data_count[0..7]                                      ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state.END_TRANSFER                     ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state_counter[0]                       ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state.IDLE                             ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state.SEND_COMMAND                     ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state.TRANSFER_BYTE                    ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[0]~reg0                                        ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[1]~reg0                                        ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[2]~reg0                                        ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[3]~reg0                                        ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[4]~reg0                                        ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[5]~reg0                                        ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[6]~reg0                                        ; Lost fanout                                                                    ;
-; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[7]~reg0                                        ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|data_count[0..7]                                        ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state.END_TRANSFER                       ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state_counter[0]                         ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state.IDLE                               ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state.SEND_COMMAND                       ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state.TRANSFER_BYTE                      ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[0]~reg0                                          ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[1]~reg0                                          ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[2]~reg0                                          ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[3]~reg0                                          ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[4]~reg0                                          ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[5]~reg0                                          ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[6]~reg0                                          ; Lost fanout                                                                    ;
-; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[7]~reg0                                          ; Lost fanout                                                                    ;
-; num_bytes_out[0..2,5..7]                                                                                                    ; Stuck at GND due to stuck port data_in                                         ;
-; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[0..2,5..7] ; Stuck at GND due to stuck port reg_out                                         ;
-; cisr_decoder:CISR_Decoder|state[2..9,11..31]                                                                                ; Merged with cisr_decoder:CISR_Decoder|state[10]                                ;
-; value_index_receiver:Value_Index_Receiver|block_transfer_state[2..9,11..31]                                                 ; Merged with value_index_receiver:Value_Index_Receiver|block_transfer_state[10] ;
-; num_bytes_out[3,4]                                                                                                          ; Merged with block_out_start                                                    ;
-; block_transfer_state[3..9,11..31]                                                                                           ; Merged with block_transfer_state[10]                                           ;
-; row_length_receiver:Row_Length_Receiver|block_transfer_state[2..9,11..31]                                                   ; Merged with row_length_receiver:Row_Length_Receiver|block_transfer_state[10]   ;
-; active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[5]                  ; Stuck at GND due to stuck port data_in                                         ;
-; value_index_receiver:Value_Index_Receiver|curr_byte_in_word[0]                                                              ; Merged with value_index_receiver:Value_Index_Receiver|byte_in_count[0]         ;
-; row_length_receiver:Row_Length_Receiver|curr_byte_in_word[0]                                                                ; Merged with row_length_receiver:Row_Length_Receiver|byte_in_count[0]           ;
-; value_index_receiver:Value_Index_Receiver|curr_byte_in_word[1]                                                              ; Merged with value_index_receiver:Value_Index_Receiver|byte_in_count[1]         ;
-; row_length_receiver:Row_Length_Receiver|curr_byte_in_word[1]                                                                ; Merged with row_length_receiver:Row_Length_Receiver|byte_in_count[1]           ;
-; cisr_decoder:CISR_Decoder|state[10]                                                                                         ; Stuck at GND due to stuck port data_in                                         ;
-; value_index_receiver:Value_Index_Receiver|block_transfer_state[10]                                                          ; Stuck at GND due to stuck port data_in                                         ;
-; row_length_receiver:Row_Length_Receiver|block_transfer_state[10]                                                            ; Stuck at GND due to stuck port data_in                                         ;
-; block_transfer_state[10]                                                                                                    ; Stuck at GND due to stuck port data_in                                         ;
-; Total Number of Removed Registers = 239                                                                                     ;                                                                                ;
-+-----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                          ;
++----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
+; Register name                                                                                                              ; Reason for Removal                                                             ;
++----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
+; multiplier1:Mul|state[1..31]                                                                                               ; Stuck at GND due to stuck port data_in                                         ;
+; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|address_from_device[2]       ; Stuck at GND due to stuck port reg_out                                         ;
+; led_controller:LED_Control|out_to_led[0..11]                                                                               ; Stuck at VCC due to stuck port data_in                                         ;
+; active_block:BLOCK_TRANSFER_INST|state_in[1,2]                                                                             ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|ept_length[7]~reg0                                                                        ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|state_in[3,5]                                                                             ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|transfer_received_count[0..7]                                                             ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|ept_length[4]~reg0                                                                        ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|ept_length[3]~reg0                                                                        ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|ept_length[2]~reg0                                                                        ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|ept_length[1]~reg0                                                                        ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|ept_length[0]~reg0                                                                        ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|ept_length[6]~reg0                                                                        ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|ept_length[5]~reg0                                                                        ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|state_in[0,4]                                                                             ; Lost fanout                                                                    ;
+; active_block:BLOCK_TRANSFER_INST|transfer_received~reg0                                                                    ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|data_count[0..7]                                     ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state.END_TRANSFER                    ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state_counter[0]                      ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state.IDLE                            ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state.SEND_COMMAND                    ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|block_transfer_state.TRANSFER_BYTE                   ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[0]~reg0                                       ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[1]~reg0                                       ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[2]~reg0                                       ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[3]~reg0                                       ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[4]~reg0                                       ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[5]~reg0                                       ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[6]~reg0                                       ; Lost fanout                                                                    ;
+; value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|uc_out[7]~reg0                                       ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|data_count[0..7]                                       ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state.END_TRANSFER                      ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state_counter[0]                        ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state.IDLE                              ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state.SEND_COMMAND                      ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|block_transfer_state.TRANSFER_BYTE                     ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[0]~reg0                                         ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[1]~reg0                                         ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[2]~reg0                                         ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[3]~reg0                                         ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[4]~reg0                                         ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[5]~reg0                                         ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[6]~reg0                                         ; Lost fanout                                                                    ;
+; row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|uc_out[7]~reg0                                         ; Lost fanout                                                                    ;
+; num_bytes_out[0..4,6,7]                                                                                                    ; Stuck at GND due to stuck port data_in                                         ;
+; cisr_decoder:CISR_Decoder|state[0,2..31]                                                                                   ; Stuck at GND due to stuck port data_in                                         ;
+; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[0..4,6,7] ; Stuck at GND due to stuck port reg_out                                         ;
+; value_index_receiver:Value_Index_Receiver|block_transfer_state[2..9,11..31]                                                ; Merged with value_index_receiver:Value_Index_Receiver|block_transfer_state[10] ;
+; num_bytes_out[5]                                                                                                           ; Merged with block_out_start                                                    ;
+; block_transfer_state[3..9,11..31]                                                                                          ; Merged with block_transfer_state[10]                                           ;
+; row_length_receiver:Row_Length_Receiver|block_transfer_state[2..9,11..31]                                                  ; Merged with row_length_receiver:Row_Length_Receiver|block_transfer_state[10]   ;
+; active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[5]                 ; Stuck at GND due to stuck port data_in                                         ;
+; value_index_receiver:Value_Index_Receiver|curr_byte_in_word[0]                                                             ; Merged with value_index_receiver:Value_Index_Receiver|byte_in_count[0]         ;
+; row_length_receiver:Row_Length_Receiver|curr_byte_in_word[0]                                                               ; Merged with row_length_receiver:Row_Length_Receiver|byte_in_count[0]           ;
+; value_index_receiver:Value_Index_Receiver|curr_byte_in_word[1]                                                             ; Merged with value_index_receiver:Value_Index_Receiver|byte_in_count[1]         ;
+; row_length_receiver:Row_Length_Receiver|curr_byte_in_word[1]                                                               ; Merged with row_length_receiver:Row_Length_Receiver|byte_in_count[1]           ;
+; value_index_receiver:Value_Index_Receiver|block_transfer_state[10]                                                         ; Stuck at GND due to stuck port data_in                                         ;
+; row_length_receiver:Row_Length_Receiver|block_transfer_state[10]                                                           ; Stuck at GND due to stuck port data_in                                         ;
+; block_transfer_state[10]                                                                                                   ; Stuck at GND due to stuck port data_in                                         ;
+; Total Number of Removed Registers = 249                                                                                    ;                                                                                ;
++----------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -515,7 +514,9 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
 ; num_bytes_out[6]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[6] ;
 ;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
-; num_bytes_out[5]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[5] ;
+; num_bytes_out[4]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[4] ;
+;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
+; num_bytes_out[3]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[3] ;
 ;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
 ; num_bytes_out[2]                                                                                      ; Stuck at GND              ; active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[2] ;
 ;                                                                                                       ; due to stuck port data_in ;                                                                                                                     ;
@@ -529,12 +530,12 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1990  ;
+; Total registers                              ; 1788  ;
 ; Number of registers using Synchronous Clear  ; 34    ;
-; Number of registers using Synchronous Load   ; 279   ;
-; Number of registers using Asynchronous Clear ; 1962  ;
+; Number of registers using Synchronous Load   ; 272   ;
+; Number of registers using Asynchronous Clear ; 1761  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 1135  ;
+; Number of registers using Clock Enable       ; 936   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -545,14 +546,6 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ; Inverted Register                                                                                               ; Fan out ;
 +-----------------------------------------------------------------------------------------------------------------+---------+
 ; active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|USB_WR        ; 4       ;
-; led_controller:LED_Control|out_to_led[4]                                                                        ; 1       ;
-; led_controller:LED_Control|out_to_led[5]                                                                        ; 1       ;
-; led_controller:LED_Control|out_to_led[6]                                                                        ; 1       ;
-; led_controller:LED_Control|out_to_led[7]                                                                        ; 1       ;
-; led_controller:LED_Control|out_to_led[8]                                                                        ; 1       ;
-; led_controller:LED_Control|out_to_led[9]                                                                        ; 1       ;
-; led_controller:LED_Control|out_to_led[10]                                                                       ; 1       ;
-; led_controller:LED_Control|out_to_led[11]                                                                       ; 1       ;
 ; led_controller:LED_Control|out_to_led[12]                                                                       ; 1       ;
 ; led_controller:LED_Control|out_to_led[13]                                                                       ; 1       ;
 ; led_controller:LED_Control|out_to_led[14]                                                                       ; 1       ;
@@ -578,9 +571,13 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 ; led_controller:LED_Control|out_to_led[34]                                                                       ; 1       ;
 ; led_controller:LED_Control|out_to_led[35]                                                                       ; 1       ;
 ; active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[0]      ; 8       ;
+; cisr_decoder:CISR_Decoder|row_id[3][1]                                                                          ; 2       ;
+; cisr_decoder:CISR_Decoder|row_id[3][0]                                                                          ; 2       ;
+; cisr_decoder:CISR_Decoder|row_id[2][1]                                                                          ; 3       ;
+; cisr_decoder:CISR_Decoder|row_id[1][0]                                                                          ; 3       ;
 ; active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|usb_rxf_n_reg ; 4       ;
-; cisr_decoder:CISR_Decoder|row_len_fifo_counter[0]                                                               ; 8       ;
-; Total number of inverted registers = 36                                                                         ;         ;
+; cisr_decoder:CISR_Decoder|next_row_id[2]                                                                        ; 5       ;
+; Total number of inverted registers = 32                                                                         ;         ;
 +-----------------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -589,56 +586,38 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------+
-; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|read_complete_cntr[6] ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[0][29]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[1][14]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[2][3]                                                                                             ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[3][22]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[4][28]                                                                                            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[5][27]                                                                                            ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|read_complete_cntr[7] ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[0][19]                                                                                 ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[1][28]                                                                                 ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[2][22]                                                                                 ;
+; 3:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[3][14]                                                                                 ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 62 LEs               ; 0 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|next_row_id[26]                                                                               ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[0][16]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[1][15]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[2][7]                                                                                             ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[3][24]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[4][30]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[5][19]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[6][25]                                                                                            ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; Yes        ; |top|multiplier1:Mul|accum[7][3]                                                                                             ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][0][2]                                                                         ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][1][26]                                                                        ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][2][30]                                                                        ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][3][20]                                                                        ;
 ; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; Yes        ; |top|block_transfer_state[1]                                                                                                 ;
-; 12:1               ; 32 bits   ; 256 LEs       ; 160 LEs              ; 96 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|next_row_id[24]                                                                               ;
-; 12:1               ; 32 bits   ; 256 LEs       ; 128 LEs              ; 128 LEs                ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[0][10]                                                                                 ;
-; 12:1               ; 32 bits   ; 256 LEs       ; 160 LEs              ; 96 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[1][23]                                                                                 ;
-; 12:1               ; 32 bits   ; 256 LEs       ; 160 LEs              ; 96 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[2][16]                                                                                 ;
-; 12:1               ; 32 bits   ; 256 LEs       ; 160 LEs              ; 96 LEs                 ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[3][18]                                                                                 ;
-; 14:1               ; 32 bits   ; 288 LEs       ; 96 LEs               ; 192 LEs                ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][0][3]                                                                         ;
-; 14:1               ; 32 bits   ; 288 LEs       ; 96 LEs               ; 192 LEs                ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][1][16]                                                                        ;
-; 14:1               ; 32 bits   ; 288 LEs       ; 96 LEs               ; 192 LEs                ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][2][2]                                                                         ;
-; 14:1               ; 32 bits   ; 288 LEs       ; 96 LEs               ; 192 LEs                ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_len_fifo[0][3][30]                                                                        ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|cisr_decoder:CISR_Decoder|row_id[3][1]                                                                                  ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 128 LEs              ; 32 LEs                 ; No         ; |top|multiplier1:Mul|Mux13                                                                                                   ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 128 LEs              ; 32 LEs                 ; No         ; |top|multiplier1:Mul|Mux51                                                                                                   ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 128 LEs              ; 32 LEs                 ; No         ; |top|multiplier1:Mul|Mux79                                                                                                   ;
-; 8:1                ; 32 bits   ; 160 LEs       ; 128 LEs              ; 32 LEs                 ; No         ; |top|multiplier1:Mul|Mux116                                                                                                  ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
-; 32:1               ; 8 bits    ; 168 LEs       ; 128 LEs              ; 40 LEs                 ; No         ; |top|Mux5                                                                                                                    ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |top|cisr_decoder:CISR_Decoder|next_row_id                                                                                   ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |top|multiplier1:Mul|Mux9                                                                                                    ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |top|multiplier1:Mul|Mux57                                                                                                   ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |top|multiplier1:Mul|Mux83                                                                                                   ;
+; 8:1                ; 32 bits   ; 160 LEs       ; 160 LEs              ; 0 LEs                  ; No         ; |top|multiplier1:Mul|Mux98                                                                                                   ;
+; 32:1               ; 8 bits    ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; No         ; |top|Mux7                                                                                                                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -726,7 +705,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name     ; Value ; Type                                      ;
 +--------------------+-------+-------------------------------------------+
 ; NUM_CHANNELS       ; 4     ; Signed Integer                            ;
-; ROW_LEN_FIFO_DEPTH ; 4     ; Signed Integer                            ;
+; ROW_LEN_FIFO_DEPTH ; 2     ; Signed Integer                            ;
 +--------------------+-------+-------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -737,7 +716,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name ; Value ; Type                                ;
 +----------------+-------+-------------------------------------+
 ; NUM_CHANNELS   ; 4     ; Signed Integer                      ;
-; MATRIX_SIZE    ; 6     ; Signed Integer                      ;
+; MATRIX_SIZE    ; 8     ; Signed Integer                      ;
 +----------------+-------+-------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -1342,7 +1321,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Port             ; Type  ; Severity ; Details          ;
 +------------------+-------+----------+------------------+
 ; led_data_ld      ; Input ; Info     ; Stuck at VCC     ;
-; led_data[35..32] ; Input ; Info     ; Stuck at GND     ;
+; led_data[35..24] ; Input ; Info     ; Stuck at GND     ;
 +------------------+-------+----------+------------------+
 
 
@@ -1352,32 +1331,32 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 59                          ;
-; cycloneiii_ff         ; 1990                        ;
-;     CLR               ; 837                         ;
+; cycloneiii_ff         ; 1788                        ;
+;     CLR               ; 834                         ;
 ;     CLR SLD           ; 15                          ;
-;     ENA               ; 15                          ;
-;     ENA CLR           ; 774                         ;
+;     ENA               ; 14                          ;
+;     ENA CLR           ; 583                         ;
 ;     ENA CLR SCLR      ; 34                          ;
-;     ENA CLR SLD       ; 302                         ;
+;     ENA CLR SLD       ; 295                         ;
 ;     ENA SLD           ; 10                          ;
 ;     plain             ; 3                           ;
 ; cycloneiii_io_obuf    ; 9                           ;
-; cycloneiii_lcell_comb ; 5815                        ;
-;     arith             ; 1428                        ;
-;         2 data inputs ; 1176                        ;
-;         3 data inputs ; 252                         ;
-;     normal            ; 4387                        ;
+; cycloneiii_lcell_comb ; 3573                        ;
+;     arith             ; 713                         ;
+;         2 data inputs ; 462                         ;
+;         3 data inputs ; 251                         ;
+;     normal            ; 2860                        ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 115                         ;
-;         2 data inputs ; 168                         ;
-;         3 data inputs ; 1089                        ;
-;         4 data inputs ; 3013                        ;
+;         1 data inputs ; 87                          ;
+;         2 data inputs ; 156                         ;
+;         3 data inputs ; 639                         ;
+;         4 data inputs ; 1976                        ;
 ; cycloneiii_mac_mult   ; 12                          ;
 ; cycloneiii_mac_out    ; 12                          ;
 ; cycloneiii_ram_block  ; 64                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 78.70                       ;
-; Average LUT depth     ; 36.57                       ;
+; Max LUT depth         ; 42.70                       ;
+; Average LUT depth     ; 11.48                       ;
 +-----------------------+-----------------------------+
 
 
@@ -1386,7 +1365,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:58     ;
+; Top            ; 00:00:16     ;
 +----------------+--------------+
 
 
@@ -1396,7 +1375,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Tue May 05 16:47:25 2020
+    Info: Processing started: Tue May 05 23:59:39 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top -c top
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -1435,8 +1414,9 @@ Info (12021): Found 1 design units, including 1 entities, in source file src/top
 Info (12127): Elaborating entity "top" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at top.sv(45): object "trigger_out" assigned a value but never read File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 45
 Warning (10036): Verilog HDL or VHDL warning at top.sv(46): object "rst_trigger" assigned a value but never read File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 46
-Warning (10230): Verilog HDL assignment warning at top.sv(260): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 260
-Warning (10230): Verilog HDL assignment warning at top.sv(272): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 272
+Warning (10230): Verilog HDL assignment warning at top.sv(264): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 264
+Warning (10230): Verilog HDL assignment warning at top.sv(275): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 275
+Warning (10030): Net "led_data[35..24]" at top.sv(59) has no driver or initial value, using a default initial value '0' File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 59
 Warning (10034): Output port "SD_CLK" at top.sv(37) has no driver File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 37
 Info (12128): Elaborating entity "led_controller" for hierarchy "led_controller:LED_Control" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 82
 Info (12128): Elaborating entity "active_transfer_library" for hierarchy "active_transfer_library:Active_Transfer_Controller" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 98
@@ -1468,7 +1448,7 @@ Info (12128): Elaborating entity "value_index_receiver" for hierarchy "value_ind
 Warning (10230): Verilog HDL assignment warning at cisr_receivers.sv(223): truncated value with size 32 to match size of target (2) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/cisr_receivers.sv Line: 223
 Warning (10230): Verilog HDL assignment warning at cisr_receivers.sv(226): truncated value with size 32 to match size of target (8) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/cisr_receivers.sv Line: 226
 Info (12128): Elaborating entity "cisr_decoder" for hierarchy "cisr_decoder:CISR_Decoder" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 157
-Warning (10230): Verilog HDL assignment warning at cisr_receivers.sv(301): truncated value with size 32 to match size of target (16) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/cisr_receivers.sv Line: 301
+Warning (10230): Verilog HDL assignment warning at cisr_receivers.sv(304): truncated value with size 32 to match size of target (16) File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/cisr_receivers.sv Line: 304
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "row_len_fifo" into its bus
 Info (12128): Elaborating entity "multiplier1" for hierarchy "multiplier1:Mul" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 169
 Info (12128): Elaborating entity "ROM" for hierarchy "multiplier1:Mul|ROM:mem0" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/pipelines/row_accumulator.sv Line: 24
@@ -1545,6 +1525,14 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LED[1]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
     Warning (13410): Pin "LED[2]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
     Warning (13410): Pin "LED[3]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
+    Warning (13410): Pin "LED[4]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
+    Warning (13410): Pin "LED[5]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
+    Warning (13410): Pin "LED[6]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
+    Warning (13410): Pin "LED[7]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
+    Warning (13410): Pin "LED[8]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
+    Warning (13410): Pin "LED[9]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
+    Warning (13410): Pin "LED[10]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
+    Warning (13410): Pin "LED[11]" is stuck at VCC File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 31
     Warning (13410): Pin "SD_CLK" is stuck at GND File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 37
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 65 registers lost all their fanouts during netlist optimizations.
@@ -1554,13 +1542,19 @@ Info (17016): Found the following redundant logic cells in design
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|address_from_device[1]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 357
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[1]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[2]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
-    Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[3]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 358
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[3]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
-    Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[4]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 358
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[4]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
+    Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|length_from_device[5]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 358
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[5]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[6]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|payload_from_device[7]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 359
+    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|transfer_to_device[2]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
+    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|transfer_to_device[6]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
+    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|transfer_to_device[7]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
+    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|ept_length[0]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 44
+    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|ept_length[4]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 44
+    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|ept_length[0]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 44
+    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|ept_length[4]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 44
     Info (17048): Logic cell "active_trigger:ACTIVE_TRIGGER_INST|previous_to_trigupdate[4]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_trigger.vqm Line: 109
     Info (17048): Logic cell "active_trigger:ACTIVE_TRIGGER_INST|previous_to_trigupdate[5]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_trigger.vqm Line: 109
     Info (17048): Logic cell "active_trigger:ACTIVE_TRIGGER_INST|previous_to_trigupdate[2]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_trigger.vqm Line: 109
@@ -1569,19 +1563,12 @@ Info (17016): Found the following redundant logic cells in design
     Info (17048): Logic cell "active_trigger:ACTIVE_TRIGGER_INST|previous_to_trigupdate[6]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_trigger.vqm Line: 109
     Info (17048): Logic cell "active_trigger:ACTIVE_TRIGGER_INST|previous_to_trigupdate[0]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_trigger.vqm Line: 109
     Info (17048): Logic cell "active_trigger:ACTIVE_TRIGGER_INST|previous_to_trigupdate[1]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_trigger.vqm Line: 109
-    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|transfer_to_device[2]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
-    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|transfer_to_device[6]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
-    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|transfer_to_device[7]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
-    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|ept_length[0]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 44
-    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|ept_length[4]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 44
-    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|transfer_to_device[2]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
-    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|transfer_to_device[6]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
-    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|transfer_to_device[7]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
-    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|ept_length[0]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 44
-    Info (17048): Logic cell "row_length_receiver:Row_Length_Receiver|active_block:Block_Receiver|ept_length[4]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 44
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|control_multiplexor[2]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 348
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|control_multiplexor[0]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 348
     Info (17048): Logic cell "active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|control_multiplexor[1]~ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/endpoint_registers.vqm Line: 348
+    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|transfer_to_device[2]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
+    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|transfer_to_device[6]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
+    Info (17048): Logic cell "value_index_receiver:Value_Index_Receiver|active_block:Block_Receiver|transfer_to_device[7]~reg0_ICOMBOUT" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/active_transfer/active_block.vqm Line: 48
 Info (144001): Generated suppressed messages file C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/output_files/top.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -1590,18 +1577,18 @@ Warning (21074): Design contains 4 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SD_DATA[1]" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 40
     Warning (15610): No output dependent on input pin "SD_DATA[2]" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 40
     Warning (15610): No output dependent on input pin "SD_DATA[3]" File: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/src/top.sv Line: 40
-Info (21057): Implemented 7045 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 4608 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 10 input pins
     Info (21059): Implemented 40 output pins
     Info (21060): Implemented 9 bidirectional pins
-    Info (21061): Implemented 6898 logic cells
+    Info (21061): Implemented 4461 logic cells
     Info (21064): Implemented 64 RAM segments
     Info (21062): Implemented 24 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 47 warnings
-    Info: Peak virtual memory: 4809 megabytes
-    Info: Processing ended: Tue May 05 16:48:42 2020
-    Info: Elapsed time: 00:01:17
-    Info: Total CPU time (on all processors): 00:01:37
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 56 warnings
+    Info: Peak virtual memory: 4817 megabytes
+    Info: Processing ended: Wed May 06 00:00:15 2020
+    Info: Elapsed time: 00:00:36
+    Info: Total CPU time (on all processors): 00:00:54
 
 
 +------------------------------------------+

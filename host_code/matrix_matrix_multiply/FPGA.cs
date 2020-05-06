@@ -186,7 +186,7 @@ public class FPGA
             Console.WriteLine("{0,5}", ((uint*)data)[i]);
         }
         Console.WriteLine("Payload: {0}", Convert.ToString(payload, 2).PadLeft(8, '0'));
-        Console.WriteLine("Roundtrip data transfer time: {0} us", (double)watch.ElapsedTicks/Stopwatch.Frequency*1000000);
+        Console.WriteLine("Multiplication Time: {0} us", (double)watch.ElapsedTicks/Stopwatch.Frequency*1000000);
 
     }
 

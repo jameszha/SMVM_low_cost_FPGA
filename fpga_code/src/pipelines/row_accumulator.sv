@@ -39,27 +39,27 @@ module multiplier1
 		for (k=0; k<NUM_CHANNELS;k++) begin: store
 			register row_id_store0(
 				.clk, .rst_l,
-				.en(rdy),
+				.en(1'b1),
 				.clear(1'b0),
 				.D(row_id[k]),
 				.Q(row_id_stored0[k]));
 			register matrix_value_store0(
 				.clk,
 				.rst_l,
-				.en(rdy),
+				.en(1'b1),
 				.clear(1'b0),
 				.D(values[k]),
 				.Q(matrix_values_stored0[k]));
 			register row_id_store1(
 				.clk, .rst_l,
-				.en(rdy_stored0),
+				.en(1'b1),
 				.clear(1'b0),
 				.D(row_id_stored0[k]),
 				.Q(row_id_stored1[k]));
 			register matrix_value_store1(
 				.clk,
 				.rst_l,
-				.en(rdy_stored0),
+				.en(1'b1),
 				.clear(1'b0),
 				.D(matrix_values_stored0[k]),
 				.Q(matrix_values_stored1[k]));
@@ -68,14 +68,14 @@ module multiplier1
 	register ready_store0(
 				.clk, 
 				.rst_l,
-				.en(rdy), 
+				.en(1'b1), 
 				.clear(1'b0),
 				.D(rdy),
 				.Q(rdy_stored0));
 	register ready_store1(
 				.clk, 
 				.rst_l,
-				.en(rdy_stored0), 
+				.en(1'b1), 
 				.clear(1'b0),
 				.D(rdy_stored0),
 				.Q(rdy_stored1));

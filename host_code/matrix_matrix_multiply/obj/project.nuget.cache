@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hb48DMLgacbNiaqZ5s8wstIbOSYqVB24ArqFBvjqc+mt5tDSuPXvbe7pC3lvfKlok2CmDAsadOMUC4YkDUaXjQ==",
+  "dgSpecHash": "Y6xMQA+OJp1EYyXjTA54CJ+zZPKzhtE8bQYCXzgGb3oW7C8c2cevSn1VnOIGxOLg5odHPBYPA/lDgwgRqWHtfQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\James\\Documents\\CMU\\15618\\project\\New C# Project\\matrix_matrix_multiply\\matrix_matrix_multiply.csproj",
+  "projectFilePath": "C:\\Users\\James\\Documents\\CMU\\15618\\BNN_FPGA\\host_code\\matrix_matrix_multiply\\matrix_matrix_multiply.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

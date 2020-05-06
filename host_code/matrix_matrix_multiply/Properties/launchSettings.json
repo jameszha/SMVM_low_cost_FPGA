@@ -2,7 +2,7 @@
   "profiles": {
     "matrix_matrix_multiply": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\James\\Documents\\CMU\\15618\\project\\New C# Project\\matrix_matrix_multiply"
+      "workingDirectory": "C:\\Users\\James\\Documents\\CMU\\15618\\BNN_FPGA\\host_code\\matrix_matrix_multiply"
     }
   }
 }

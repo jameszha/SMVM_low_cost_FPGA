@@ -1,5 +1,5 @@
 Assembler report for top
-Sun May 03 03:28:40 2020
+Tue May 05 16:49:20 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -10,8 +10,8 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/James/Documents/CMU/15618/project/New Project/output_files/top.sof
-  6. Assembler Device Options: C:/Users/James/Documents/CMU/15618/project/New Project/output_files/top.pof
+  5. Assembler Device Options: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/output_files/top.sof
+  6. Assembler Device Options: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/output_files/top.pof
   7. Assembler Messages
 
 
@@ -39,7 +39,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun May 03 03:28:40 2020 ;
+; Assembler Status      ; Successful - Tue May 05 16:49:20 2020 ;
 ; Revision Name         ; top                                   ;
 ; Top-level Entity Name ; top                                   ;
 ; Family                ; Cyclone IV E                          ;
@@ -54,35 +54,35 @@ https://fpgasoftware.intel.com/eula.
 +--------+---------+---------------+
 
 
-+-----------------------------------------------------------------------------+
-; Assembler Generated Files                                                   ;
-+-----------------------------------------------------------------------------+
-; File Name                                                                   ;
-+-----------------------------------------------------------------------------+
-; C:/Users/James/Documents/CMU/15618/project/New Project/output_files/top.sof ;
-; C:/Users/James/Documents/CMU/15618/project/New Project/output_files/top.pof ;
-+-----------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+; Assembler Generated Files                                                  ;
++----------------------------------------------------------------------------+
+; File Name                                                                  ;
++----------------------------------------------------------------------------+
+; C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/output_files/top.sof ;
+; C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/output_files/top.pof ;
++----------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/James/Documents/CMU/15618/project/New Project/output_files/top.sof ;
-+----------------+--------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                              ;
-+----------------+--------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x0010A1B0                                                                           ;
-; Checksum       ; 0x0010A1B0                                                                           ;
-+----------------+--------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/output_files/top.sof ;
++----------------+-------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                             ;
++----------------+-------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x005051CD                                                                          ;
+; Checksum       ; 0x005051CD                                                                          ;
++----------------+-------------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/James/Documents/CMU/15618/project/New Project/output_files/top.pof ;
-+--------------------+----------------------------------------------------------------------------------+
-; Option             ; Setting                                                                          ;
-+--------------------+----------------------------------------------------------------------------------+
-; JTAG usercode      ; 0x00000000                                                                       ;
-; Checksum           ; 0x066B8955                                                                       ;
-; Compression Ratio  ; 3                                                                                ;
-+--------------------+----------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/James/Documents/CMU/15618/BNN_FPGA/fpga_code/output_files/top.pof ;
++--------------------+---------------------------------------------------------------------------------+
+; Option             ; Setting                                                                         ;
++--------------------+---------------------------------------------------------------------------------+
+; JTAG usercode      ; 0x00000000                                                                      ;
+; Checksum           ; 0x0606347C                                                                      ;
+; Compression Ratio  ; 2                                                                               ;
++--------------------+---------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -91,15 +91,15 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Sun May 03 03:28:38 2020
+    Info: Processing started: Tue May 05 16:49:18 2020
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off top -c top
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4693 megabytes
-    Info: Processing ended: Sun May 03 03:28:40 2020
+    Info: Peak virtual memory: 4710 megabytes
+    Info: Processing ended: Tue May 05 16:49:20 2020
     Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Total CPU time (on all processors): 00:00:03
 
 

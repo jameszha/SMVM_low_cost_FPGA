@@ -51,7 +51,7 @@ module top
     //**************************************************
     logic clk, rst_l;
     assign clk = aa[1];
-    assign rst_l = aa[0];
+    assign rst_l = aa[0] & BUTTON[1];
 
     //**************************************************
     //*     LED Control
@@ -168,7 +168,20 @@ module top
                                                          .accum(result),
                                                          .done(done));
 
-    // // Temp latch to light up LEDs corresponding to nonzero elements in the decoded matrix
+    // always_ff @(posedge clk or negedge rst_l) begin
+    //     if(~rst_l) begin
+    //         result <= 'b0;
+    //     end else begin
+    //         if (rdy) begin
+    //             for (int i = 0; i < 4; i ++) begin
+    //                 result[row_id[i]] <= result[row_id[i]] + values[i];
+    //             end
+    //         end
+    //     end
+    // end
+    // assign done = (row_id[0] >= 6 && row_id[1] >= 6 && row_id[2] >= 6 && row_id[3] >= 6);
+
+    // Temp latch to light up LEDs corresponding to nonzero elements in the decoded matrix
     // always_ff @(posedge clk or negedge rst_l) begin
     //     if(~rst_l) begin
     //         led_data <= 'b0;
@@ -184,13 +197,14 @@ module top
     //         end
     //     end
     // end
-    // assign led_data[5:0] = result[0][5:0];
-    // assign led_data[11:6] = result[1][5:0];
-    // assign led_data[17:12] = result[2][5:0];
-    // assign led_data[23:18] = result[3][5:0];
-    // assign led_data[29:24] = result[4][5:0];
-    // assign led_data[35:30] = result[5][5:0];
-    assign led_data = 36'hFFFF FFFFF; 
+    // assign led_data[5:0] = row_id[0][5:0];
+    // assign led_data[11:6] = row_id[1][5:0];
+    // assign led_data[17:12] = row_id[2][5:0];
+    // assign led_data[23:18] = row_id[3][5:0];
+
+
+    // assign led_data[35] = done;
+    assign led_data = result[1];
 
     logic [23:0][7:0] data_out;
     assign data_out = result;
@@ -243,7 +257,7 @@ module top
                     block_out_byte <= 0;
                     num_bytes_out <= 0;
                     if (done & ~transfer_busy) begin
-                        num_bytes_out <= 32;
+                        num_bytes_out <= 6*4;
                         block_out_start <= 1'b1;
                         block_transfer_state <= TX_WAITING;
                     end

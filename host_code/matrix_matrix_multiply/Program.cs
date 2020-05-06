@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -19,8 +20,11 @@ namespace matrix_matrix_multiply
             var csr_path = "matrix_data/wide_csr.csv";
             var cisr_path = "matrix_data/wide_cisr.csv";
 
+            StreamReader sr = new StreamReader(dense_path);
+            var m =sr.ReadLine().Split(',').Length;
+
             var n = 6;
-            var dense_matrix = new Matrix(n, n);
+            var dense_matrix = new Matrix(n, m);
 
             // Load Dense Matrix Representation
             using (TextFieldParser csv_parser = new TextFieldParser(dense_path))
@@ -31,7 +35,7 @@ namespace matrix_matrix_multiply
                 for(int i = 0; i < n; i++)
                 {
                     string[] row_data = csv_parser.ReadFields();
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < m; j++)
                     {
                         dense_matrix[i,j] = Convert.ToInt32(row_data[j]);
                     }
@@ -66,6 +70,20 @@ namespace matrix_matrix_multiply
             Console.WriteLine("CISR Column Indices: " + String.Join(", ", cisr_column_indices));
             Console.WriteLine("CISR Row Lengths:    " + String.Join(", ", cisr_row_lengths));
 
+            // Generate Reference Solution
+            var vector = new Matrix(m, 1);
+            for (int i = 0; i < m; i++)
+            {
+                vector[i, 0] = i;
+            }
+            var ref_watch = new System.Diagnostics.Stopwatch();
+            ref_watch.Start();
+            var result = dense_matrix * vector;
+            ref_watch.Stop();
+            Console.WriteLine("Result:");
+            Console.WriteLine(result);
+            Console.WriteLine("Multiplication Time: {0} us", (double)ref_watch.ElapsedTicks / Stopwatch.Frequency * 1000000);
+
             // Interleave Value and Column Indices into single array
             int num_nonzeros = cisr_values.Length;
             uint[] cisr_data = new uint[2 * num_nonzeros];
@@ -79,6 +97,7 @@ namespace matrix_matrix_multiply
             FPGA.UpdateDeviceList();
             FPGA.OpenDevice(0);
             FPGA.SendReset();
+            FPGA.watch.Start();
 
             // Transfer Row Lengths
             fixed (uint* data = cisr_row_lengths)
@@ -92,23 +111,6 @@ namespace matrix_matrix_multiply
             {   
                 FPGA.BlockArrayWrite(2, data, (uint)cisr_data.Length);
             }
-
-
-            uint length = 56;
-            var temp_buf = new uint[length];
-            for (uint i = 0; i < length; i++)
-            {
-                temp_buf[i] = i;
-            }
-
-            //FPGA.SlowArrayWrite(2, temp_buf, 36);
-            FPGA.watch.Start();
-            fixed (uint* buf = temp_buf) 
-            {
-                //FPGA.BlockArrayWrite(3, buf, length);
-            }
-
-
             while (true) ;
         }
     }

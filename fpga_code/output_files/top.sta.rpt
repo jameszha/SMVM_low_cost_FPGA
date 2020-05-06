@@ -1,5 +1,5 @@
 Timing Analyzer report for top
-Sun May 03 03:28:45 2020
+Tue May 05 16:49:28 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -93,12 +93,12 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.12        ;
+; Average used               ; 1.40        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   4.1%      ;
+;     Processors 2-4         ;  13.3%      ;
 +----------------------------+-------------+
 
 
@@ -107,7 +107,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; top.sdc       ; OK     ; Sun May 03 03:28:43 2020 ;
+; top.sdc       ; OK     ; Tue May 05 16:49:24 2020 ;
 +---------------+--------+--------------------------+
 
 
@@ -319,7 +319,6 @@ No synchronizer chains to report.
 +-------------------------+--------------+-----------------+-----------------+
 ; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
 +-------------------------+--------------+-----------------+-----------------+
-; BUTTON[1]               ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SD_DATA[0]              ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SD_DATA[1]              ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SD_DATA[2]              ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
@@ -337,6 +336,7 @@ No synchronizer chains to report.
 ; aa[1]                   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; aa[0]                   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; BUTTON[0]               ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; BUTTON[1]               ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; bc_in[1]                ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; ~ALTERA_ASDO_DATA1~     ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; ~ALTERA_FLASH_nCE_nCSO~ ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
@@ -543,10 +543,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 2     ; 2    ;
-; Unconstrained Input Ports       ; 12    ; 12   ;
-; Unconstrained Input Port Paths  ; 648   ; 648  ;
-; Unconstrained Output Ports      ; 18    ; 18   ;
-; Unconstrained Output Port Paths ; 34    ; 34   ;
+; Unconstrained Input Ports       ; 13    ; 13   ;
+; Unconstrained Input Port Paths  ; 4075  ; 4075 ;
+; Unconstrained Output Ports      ; 42    ; 42   ;
+; Unconstrained Output Port Paths ; 58    ; 58   ;
 +---------------------------------+-------+------+
 
 
@@ -567,6 +567,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Input Port  ; Comment                                                                              ;
 +-------------+--------------------------------------------------------------------------------------+
 ; BUTTON[0]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; BUTTON[1]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; aa[0]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; bc_in[0]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; bc_in[1]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -586,6 +587,30 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +-------------+---------------------------------------------------------------------------------------+
 ; Output Port ; Comment                                                                               ;
 +-------------+---------------------------------------------------------------------------------------+
+; LED[4]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[5]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[6]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[7]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[8]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[9]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[10]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[11]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[12]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[13]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[14]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[15]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[16]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[17]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[18]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[19]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[20]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[21]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[22]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[23]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[24]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[25]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[26]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[27]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED[28]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED[29]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED[30]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -613,6 +638,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Input Port  ; Comment                                                                              ;
 +-------------+--------------------------------------------------------------------------------------+
 ; BUTTON[0]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; BUTTON[1]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; aa[0]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; bc_in[0]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; bc_in[1]    ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -632,6 +658,30 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +-------------+---------------------------------------------------------------------------------------+
 ; Output Port ; Comment                                                                               ;
 +-------------+---------------------------------------------------------------------------------------+
+; LED[4]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[5]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[6]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[7]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[8]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[9]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[10]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[11]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[12]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[13]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[14]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[15]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[16]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[17]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[18]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[19]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[20]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[21]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[22]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[23]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[24]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[25]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[26]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LED[27]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED[28]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED[29]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; LED[30]     ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -659,7 +709,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Sun May 03 03:28:41 2020
+    Info: Processing started: Tue May 05 16:49:22 2020
 Info: Command: quartus_sta top -c top
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -669,7 +719,7 @@ Info (21077): High junction temperature is 85 degrees C
 Warning (335093): The Timing Analyzer is analyzing 11 combinational loops as latches. For more details, run the Check Timing command in the Timing Analyzer or view the "User-Specified and Inferred Latches" table in the Analysis & Synthesis report.
 Info (332104): Reading SDC File: 'top.sdc'
 Warning (332060): Node: aa[1] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register row_length_counter[7] is being clocked by aa[1]
+    Info (13166): Register active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|WRITE_EN~reg0 is being clocked by aa[1]
 Warning (332060): Node: active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[1] was determined to be a clock but was found without an associated clock assignment.
     Info (13166): Latch active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|USB_REGISTER_DECODE[5] is being clocked by active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[1]
 Warning (332061): Virtual clock aa[1] is never referenced in any input or output delay assignment.
@@ -685,7 +735,7 @@ Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Warning (332060): Node: aa[1] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register row_length_counter[7] is being clocked by aa[1]
+    Info (13166): Register active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|WRITE_EN~reg0 is being clocked by aa[1]
 Warning (332060): Node: active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[1] was determined to be a clock but was found without an associated clock assignment.
     Info (13166): Latch active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|USB_REGISTER_DECODE[5] is being clocked by active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[1]
 Warning (332061): Virtual clock aa[1] is never referenced in any input or output delay assignment.
@@ -697,7 +747,7 @@ Info (332140): No Removal paths to report
 Info (332140): No Minimum Pulse Width paths to report
 Info: Analyzing Fast 1200mV 0C Model
 Warning (332060): Node: aa[1] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register row_length_counter[7] is being clocked by aa[1]
+    Info (13166): Register active_transfer_library:Active_Transfer_Controller|endpoint_registers:ENDPOINT_REGISTERS_INST|WRITE_EN~reg0 is being clocked by aa[1]
 Warning (332060): Node: active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[1] was determined to be a clock but was found without an associated clock assignment.
     Info (13166): Latch active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|USB_REGISTER_DECODE[5] is being clocked by active_transfer_library:Active_Transfer_Controller|ft_245_state_machine:FT_245_STATE_MACHINE_INST|state[1]
 Warning (332061): Virtual clock aa[1] is never referenced in any input or output delay assignment.
@@ -709,9 +759,9 @@ Info (332140): No Minimum Pulse Width paths to report
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 11 warnings
-    Info: Peak virtual memory: 4772 megabytes
-    Info: Processing ended: Sun May 03 03:28:45 2020
-    Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Peak virtual memory: 4823 megabytes
+    Info: Processing ended: Tue May 05 16:49:28 2020
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:07
 
 

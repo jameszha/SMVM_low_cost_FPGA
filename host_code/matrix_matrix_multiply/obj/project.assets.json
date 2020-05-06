@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\James\\Documents\\CMU\\15618\\project\\New C# Project\\matrix_matrix_multiply\\matrix_matrix_multiply.csproj",
+      "projectUniqueName": "C:\\Users\\James\\Documents\\CMU\\15618\\BNN_FPGA\\host_code\\matrix_matrix_multiply\\matrix_matrix_multiply.csproj",
       "projectName": "matrix_matrix_multiply",
-      "projectPath": "C:\\Users\\James\\Documents\\CMU\\15618\\project\\New C# Project\\matrix_matrix_multiply\\matrix_matrix_multiply.csproj",
+      "projectPath": "C:\\Users\\James\\Documents\\CMU\\15618\\BNN_FPGA\\host_code\\matrix_matrix_multiply\\matrix_matrix_multiply.csproj",
       "packagesPath": "C:\\Users\\James\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\James\\Documents\\CMU\\15618\\project\\New C# Project\\matrix_matrix_multiply\\obj\\",
+      "outputPath": "C:\\Users\\James\\Documents\\CMU\\15618\\BNN_FPGA\\host_code\\matrix_matrix_multiply\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\James\\AppData\\Roaming\\NuGet\\NuGet.Config",

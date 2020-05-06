@@ -9,4 +9,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Extreme.Numerics" Version="7.0.12" />
+  </ItemGroup>
+
 </Project>

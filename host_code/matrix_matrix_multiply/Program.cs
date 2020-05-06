@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 
+using Extreme.Mathematics;
+
 namespace matrix_matrix_multiply
 {
     class Program
@@ -22,9 +24,10 @@ namespace matrix_matrix_multiply
 
             StreamReader sr = new StreamReader(dense_path);
             var m =sr.ReadLine().Split(',').Length;
-
             var n = 6;
-            var dense_matrix = new Matrix(n, m);
+
+            //var dense_matrix = new MyMatrix(n, m);
+            var matrix = Matrix.CreateSparse<double>(n, m);
 
             // Load Dense Matrix Representation
             using (TextFieldParser csv_parser = new TextFieldParser(dense_path))
@@ -37,7 +40,8 @@ namespace matrix_matrix_multiply
                     string[] row_data = csv_parser.ReadFields();
                     for (int j = 0; j < m; j++)
                     {
-                        dense_matrix[i,j] = Convert.ToInt32(row_data[j]);
+                        //dense_matrix[i,j] = Convert.ToInt32(row_data[j]);
+                        matrix[i, j] = Convert.ToDouble(row_data[j]);
                     }
                     
                 }
@@ -65,20 +69,36 @@ namespace matrix_matrix_multiply
 
             // Display Loaded Matrix
             Console.WriteLine("Dense Matrix Representation:");
-            Console.WriteLine(dense_matrix);
+            Console.WriteLine(matrix);
             Console.WriteLine("CISR Values:         " + String.Join(", ", cisr_values));
             Console.WriteLine("CISR Column Indices: " + String.Join(", ", cisr_column_indices));
             Console.WriteLine("CISR Row Lengths:    " + String.Join(", ", cisr_row_lengths));
 
             // Generate Reference Solution
-            var vector = new Matrix(m, 1);
+            /*int[] vector_array = new int[m];
+            for (int i = 0; i < m; i++)
+            {
+                vector_array[i] = i;
+            }
+            var vector = Vector.Create(vector_array);*/
+
+            var vector = Matrix.CreateSparse<double>(m, 1);
+            for (int i = 0; i < m; i++)
+            {
+                vector[i, 0] = i % 1024;
+            }
+
+            Matrix<double> result;
+          
+            /*var vector = new MyMatrix(m, 1);
             for (int i = 0; i < m; i++)
             {
                 vector[i, 0] = i;
-            }
+            }*/
+
             var ref_watch = new System.Diagnostics.Stopwatch();
             ref_watch.Start();
-            var result = dense_matrix * vector;
+            result = matrix * vector;
             ref_watch.Stop();
             Console.WriteLine("Result:");
             Console.WriteLine(result);
@@ -96,7 +116,6 @@ namespace matrix_matrix_multiply
             // Connect to FPGA
             FPGA.UpdateDeviceList();
             FPGA.OpenDevice(0);
-            FPGA.SendReset();
             FPGA.watch.Start();
 
             // Transfer Row Lengths

@@ -18,9 +18,11 @@ C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\bin
 C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\bin\Debug\netcoreapp3.1\matrix_matrix_multiply.dll
 C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\bin\Debug\netcoreapp3.1\matrix_matrix_multiply.pdb
 C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.csprojAssemblyReference.cache
-C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.csproj.CoreCompileInputs.cache
 C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.AssemblyInfoInputs.cache
 C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.AssemblyInfo.cs
 C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.dll
 C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.pdb
 C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.genruntimeconfig.cache
+C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.csproj.CoreCompileInputs.cache
+C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\bin\Debug\netcoreapp3.1\Extreme.Numerics.dll
+C:\Users\James\Documents\CMU\15618\BNN_FPGA\host_code\matrix_matrix_multiply\obj\Debug\netcoreapp3.1\matrix_matrix_multiply.csproj.CopyComplete

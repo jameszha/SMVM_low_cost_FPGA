@@ -12,4 +12,7 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgExtreme_Numerics Condition=" '$(PkgExtreme_Numerics)' == '' ">C:\Users\James\.nuget\packages\extreme.numerics\7.0.12</PkgExtreme_Numerics>
+  </PropertyGroup>
 </Project>

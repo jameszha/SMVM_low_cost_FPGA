@@ -7,13 +7,13 @@ using System;
 using System.Text.RegularExpressions;
 
 
-public class Matrix
+public class MyMatrix
 {
     public int rows;
     public int cols;
     public int[,] mat;
 
-    public Matrix(int iRows, int iCols)         // Matrix Class constructor
+    public MyMatrix(int iRows, int iCols)         // Matrix Class constructor
     {
         rows = iRows;
         cols = iCols;
@@ -32,27 +32,27 @@ public class Matrix
     }
 
 
-    public static Matrix ZeroMatrix(int iRows, int iCols)       // Function generates the zero matrix
+    public static MyMatrix ZeroMatrix(int iRows, int iCols)       // Function generates the zero matrix
     {
-        Matrix matrix = new Matrix(iRows, iCols);
+        MyMatrix matrix = new MyMatrix(iRows, iCols);
         for (int i = 0; i < iRows; i++)
             for (int j = 0; j < iCols; j++)
                 matrix[i, j] = 0;
         return matrix;
     }
 
-    public static Matrix IdentityMatrix(int iRows, int iCols)   // Function generates the identity matrix
+    public static MyMatrix IdentityMatrix(int iRows, int iCols)   // Function generates the identity matrix
     {
-        Matrix matrix = ZeroMatrix(iRows, iCols);
+        MyMatrix matrix = ZeroMatrix(iRows, iCols);
         for (int i = 0; i < Math.Min(iRows, iCols); i++)
             matrix[i, i] = 1;
         return matrix;
     }
 
-    public static Matrix RandomMatrix(int iRows, int iCols, int dispersion)       // Function generates the random matrix
+    public static MyMatrix RandomMatrix(int iRows, int iCols, int dispersion)       // Function generates the random matrix
     {
         Random random = new Random();
-        Matrix matrix = new Matrix(iRows, iCols);
+        MyMatrix matrix = new MyMatrix(iRows, iCols);
         for (int i = 0; i < iRows; i++)
             for (int j = 0; j < iCols; j++)
                 matrix[i, j] = random.Next(-dispersion, dispersion);
@@ -70,9 +70,9 @@ public class Matrix
         return s;
     }
 
-    public static Matrix Transpose(Matrix m)              // Matrix transpose, for any rectangular matrix
+    public static MyMatrix Transpose(MyMatrix m)              // Matrix transpose, for any rectangular matrix
     {
-        Matrix t = new Matrix(m.cols, m.rows);
+        MyMatrix t = new MyMatrix(m.cols, m.rows);
         for (int i = 0; i < m.rows; i++)
             for (int j = 0; j < m.cols; j++)
                 t[j, i] = m[i, j];
@@ -80,7 +80,7 @@ public class Matrix
     }
 
 
-    private static void SafeAplusBintoC(Matrix A, int xa, int ya, Matrix B, int xb, int yb, Matrix C, int size)
+    private static void SafeAplusBintoC(MyMatrix A, int xa, int ya, MyMatrix B, int xb, int yb, MyMatrix C, int size)
     {
         for (int i = 0; i < size; i++)          // rows
             for (int j = 0; j < size; j++)     // cols
@@ -91,7 +91,7 @@ public class Matrix
             }
     }
 
-    private static void SafeAminusBintoC(Matrix A, int xa, int ya, Matrix B, int xb, int yb, Matrix C, int size)
+    private static void SafeAminusBintoC(MyMatrix A, int xa, int ya, MyMatrix B, int xb, int yb, MyMatrix C, int size)
     {
         for (int i = 0; i < size; i++)          // rows
             for (int j = 0; j < size; j++)     // cols
@@ -102,7 +102,7 @@ public class Matrix
             }
     }
 
-    private static void SafeACopytoC(Matrix A, int xa, int ya, Matrix C, int size)
+    private static void SafeACopytoC(MyMatrix A, int xa, int ya, MyMatrix C, int size)
     {
         for (int i = 0; i < size; i++)          // rows
             for (int j = 0; j < size; j++)     // cols
@@ -112,29 +112,29 @@ public class Matrix
             }
     }
 
-    private static void AplusBintoC(Matrix A, int xa, int ya, Matrix B, int xb, int yb, Matrix C, int size)
+    private static void AplusBintoC(MyMatrix A, int xa, int ya, MyMatrix B, int xb, int yb, MyMatrix C, int size)
     {
         for (int i = 0; i < size; i++)          // rows
             for (int j = 0; j < size; j++) C[i, j] = A[ya + i, xa + j] + B[yb + i, xb + j];
     }
 
-    private static void AminusBintoC(Matrix A, int xa, int ya, Matrix B, int xb, int yb, Matrix C, int size)
+    private static void AminusBintoC(MyMatrix A, int xa, int ya, MyMatrix B, int xb, int yb, MyMatrix C, int size)
     {
         for (int i = 0; i < size; i++)          // rows
             for (int j = 0; j < size; j++) C[i, j] = A[ya + i, xa + j] - B[yb + i, xb + j];
     }
 
-    private static void ACopytoC(Matrix A, int xa, int ya, Matrix C, int size)
+    private static void ACopytoC(MyMatrix A, int xa, int ya, MyMatrix C, int size)
     {
         for (int i = 0; i < size; i++)          // rows
             for (int j = 0; j < size; j++) C[i, j] = A[ya + i, xa + j];
     }
 
-    private static Matrix StrassenMultiply(Matrix A, Matrix B)                // Smart matrix multiplication
+    private static MyMatrix StrassenMultiply(MyMatrix A, MyMatrix B)                // Smart matrix multiplication
     {
         if (A.cols != B.rows) throw new MException("Wrong dimension of matrix!");
 
-        Matrix R;
+        MyMatrix R;
 
         int msize = Math.Max(Math.Max(A.rows, A.cols), Math.Max(B.rows, B.cols));
 
@@ -153,7 +153,7 @@ public class Matrix
         int h = size / 2;
 
 
-        Matrix[,] mField = new Matrix[n, 9];
+        MyMatrix[,] mField = new MyMatrix[n, 9];
 
         /*
          *  8x8, 8x8, 8x8, ...
@@ -166,7 +166,7 @@ public class Matrix
         for (int i = 0; i < n - 4; i++)          // rows
         {
             z = (int)Math.Pow(2, n - i - 1);
-            for (int j = 0; j < 9; j++) mField[i, j] = new Matrix(z, z);
+            for (int j = 0; j < 9; j++) mField[i, j] = new MyMatrix(z, z);
         }
 
         SafeAplusBintoC(A, 0, 0, A, h, h, mField[0, 0], h);
@@ -197,7 +197,7 @@ public class Matrix
         SafeAplusBintoC(B, 0, h, B, h, h, mField[0, 1], h);
         StrassenMultiplyRun(mField[0, 0], mField[0, 1], mField[0, 1 + 7], 1, mField); // (A12 - A22) * (B21 + B22);
 
-        R = new Matrix(A.rows, B.cols);                  // result
+        R = new MyMatrix(A.rows, B.cols);                  // result
 
         /// C11
         for (int i = 0; i < Math.Min(h, R.rows); i++)          // rows
@@ -224,7 +224,7 @@ public class Matrix
 
     // function for square matrix 2^N x 2^N
 
-    private static void StrassenMultiplyRun(Matrix A, Matrix B, Matrix C, int l, Matrix[,] f)    // A * B into C, level of recursion, matrix field
+    private static void StrassenMultiplyRun(MyMatrix A, MyMatrix B, MyMatrix C, int l, MyMatrix[,] f)    // A * B into C, level of recursion, matrix field
     {
         int size = A.rows;
         int h = size / 2;
@@ -289,29 +289,29 @@ public class Matrix
                 C[i, j] = f[l, 1 + 1][i - h, j - h] - f[l, 1 + 2][i - h, j - h] + f[l, 1 + 3][i - h, j - h] + f[l, 1 + 6][i - h, j - h];
     }
 
-    public static Matrix StupidMultiply(Matrix m1, Matrix m2)                  // Stupid matrix multiplication
+    public static MyMatrix StupidMultiply(MyMatrix m1, MyMatrix m2)                  // Stupid matrix multiplication
     {
         if (m1.cols != m2.rows) throw new MException("Wrong dimensions of matrix!");
 
-        Matrix result = ZeroMatrix(m1.rows, m2.cols);
+        MyMatrix result = ZeroMatrix(m1.rows, m2.cols);
         for (int i = 0; i < result.rows; i++)
             for (int j = 0; j < result.cols; j++)
                 for (int k = 0; k < m1.cols; k++)
                     result[i, j] += m1[i, k] * m2[k, j];
         return result;
     }
-    private static Matrix Multiply(int n, Matrix m)                          // Multiplication by constant n
+    private static MyMatrix Multiply(int n, MyMatrix m)                          // Multiplication by constant n
     {
-        Matrix r = new Matrix(m.rows, m.cols);
+        MyMatrix r = new MyMatrix(m.rows, m.cols);
         for (int i = 0; i < m.rows; i++)
             for (int j = 0; j < m.cols; j++)
                 r[i, j] = m[i, j] * n;
         return r;
     }
-    private static Matrix Add(Matrix m1, Matrix m2)         // Sčítání matic
+    private static MyMatrix Add(MyMatrix m1, MyMatrix m2)         // Sčítání matic
     {
         if (m1.rows != m2.rows || m1.cols != m2.cols) throw new MException("Matrices must have the same dimensions!");
-        Matrix r = new Matrix(m1.rows, m1.cols);
+        MyMatrix r = new MyMatrix(m1.rows, m1.cols);
         for (int i = 0; i < r.rows; i++)
             for (int j = 0; j < r.cols; j++)
                 r[i, j] = m1[i, j] + m2[i, j];
@@ -319,20 +319,20 @@ public class Matrix
     }
 
     //   O P E R A T O R S
-    public static Matrix operator -(Matrix m)
-    { return Matrix.Multiply(-1, m); }
+    public static MyMatrix operator -(MyMatrix m)
+    { return MyMatrix.Multiply(-1, m); }
 
-    public static Matrix operator +(Matrix m1, Matrix m2)
-    { return Matrix.Add(m1, m2); }
+    public static MyMatrix operator +(MyMatrix m1, MyMatrix m2)
+    { return MyMatrix.Add(m1, m2); }
 
-    public static Matrix operator -(Matrix m1, Matrix m2)
-    { return Matrix.Add(m1, -m2); }
+    public static MyMatrix operator -(MyMatrix m1, MyMatrix m2)
+    { return MyMatrix.Add(m1, -m2); }
 
-    public static Matrix operator *(Matrix m1, Matrix m2)
-    { return Matrix.StrassenMultiply(m1, m2); }
+    public static MyMatrix operator *(MyMatrix m1, MyMatrix m2)
+    { return MyMatrix.StrassenMultiply(m1, m2); }
 
-    public static Matrix operator *(int n, Matrix m)
-    { return Matrix.Multiply(n, m); }
+    public static MyMatrix operator *(int n, MyMatrix m)
+    { return MyMatrix.Multiply(n, m); }
 }
 
 //  The class for exceptions

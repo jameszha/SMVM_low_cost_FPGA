@@ -1,8 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "Y6xMQA+OJp1EYyXjTA54CJ+zZPKzhtE8bQYCXzgGb3oW7C8c2cevSn1VnOIGxOLg5odHPBYPA/lDgwgRqWHtfQ==",
+  "dgSpecHash": "UhmI1OrXi9s6bfiy3QJLb7XrbpThIMCo5CBu2fw0oPSSG0UQdoAjCJ/+SKbbAm2AnDpuJEGQYPY5TFfQWvEOmA==",
   "success": true,
   "projectFilePath": "C:\\Users\\James\\Documents\\CMU\\15618\\BNN_FPGA\\host_code\\matrix_matrix_multiply\\matrix_matrix_multiply.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\James\\.nuget\\packages\\extreme.numerics\\7.0.12\\extreme.numerics.7.0.12.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.runtime.loader\\4.3.0\\system.runtime.loader.4.3.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
+    "C:\\Users\\James\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
+  ],
   "logs": []
 }

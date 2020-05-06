@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "matrix_matrix_multiply": {
-      "commandName": "Project",
-      "commandLineArgs": "matrix_data\\matrix_A.csv matrix_data\\matrix_B.csv matrix_data\\output.csv",
-      "workingDirectory": "C:\\Users\\James\\Documents\\CMU\\15618\\project\\New C# Project\\matrix_matrix_multiply"
-    }
-  }
-}

@@ -1,7 +1,0 @@
-
-State Machine - |top|SDFileReader:SD_Card_Read|file_system
-Name file_system.FAT32 file_system.FAT16 file_system.UNKNOWN file_system.UNASSIGNED 
-file_system.UNASSIGNED 0 0 0 0 
-file_system.UNKNOWN 0 0 1 1 
-file_system.FAT16 0 1 0 1 
-file_system.FAT32 1 0 0 1 

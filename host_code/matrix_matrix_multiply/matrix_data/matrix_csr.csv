@@ -1,0 +1,6 @@
+# Row 1: CSR Values
+# Row 2: CSR Column Indices
+# Row 3: CSR Row Pointers
+85,105,57,14,88,209,239,179,114
+0,4,0,1,5,0,2,5,2
+0,2,2,5,8,8,9

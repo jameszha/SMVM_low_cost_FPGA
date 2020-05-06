@@ -1,2 +1,0 @@
-Warning (10268): Verilog HDL information at SDReader.sv(134): always construct contains both blocking and non-blocking assignments File: C:/Users/James/Documents/CMU/15618/project/New Project/src/peripherals/SDReader.sv Line: 134
-Info (10281): Verilog HDL Declaration information at SDReader.sv(26): object "rdone" differs only in case from object "RDONE" in the same scope File: C:/Users/James/Documents/CMU/15618/project/New Project/src/peripherals/SDReader.sv Line: 26

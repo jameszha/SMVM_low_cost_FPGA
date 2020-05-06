@@ -1,0 +1,169 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "bc_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bc_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[12]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[13]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[14]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[15]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[16]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[17]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[18]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[19]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[20]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[21]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[22]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[23]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[24]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[25]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[26]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[27]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[28]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[29]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[30]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[31]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[32]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[33]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[34]",
+					"strict" : false
+				},
+				{
+					"name" : "LED[35]",
+					"strict" : false
+				},
+				{
+					"name" : "bd_inout[0]",
+					"strict" : false
+				},
+				{
+					"name" : "bd_inout[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bd_inout[2]",
+					"strict" : false
+				},
+				{
+					"name" : "bd_inout[3]",
+					"strict" : false
+				},
+				{
+					"name" : "bd_inout[4]",
+					"strict" : false
+				},
+				{
+					"name" : "bd_inout[5]",
+					"strict" : false
+				},
+				{
+					"name" : "bd_inout[6]",
+					"strict" : false
+				},
+				{
+					"name" : "bd_inout[7]",
+					"strict" : false
+				},
+				{
+					"name" : "bc_in[0]",
+					"strict" : false
+				},
+				{
+					"name" : "aa[1]",
+					"strict" : false
+				},
+				{
+					"name" : "aa[0]",
+					"strict" : false
+				},
+				{
+					"name" : "BUTTON[0]",
+					"strict" : false
+				},
+				{
+					"name" : "BUTTON[1]",
+					"strict" : false
+				},
+				{
+					"name" : "bc_in[1]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
